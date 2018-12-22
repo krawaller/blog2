@@ -644,7 +644,7 @@ var Tile = React.createClass({
 <table>
   <thead><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></thead>
   <tbody>
-    <tr><td>word<br/><span style='color:red;text-decoration:line-through;'>clickedTile()</span><br/><span style='color:green;'>**status**</span></td><td><span style='color:red;text-decoration:line-through;'>flipped</span></br><span style='color:red;text-decoration:line-through;'>wrong</span><br/><span style='color:red;text-decoration:line-through;'>correct</span></td><td></td><td></td></tr>
+    <tr><td>word<br/><span style='color:red;text-decoration:line-through;'>clickedTile()</span><br/><span style='color:green;'>**status**</span></td><td><span style='color:red;text-decoration:line-through;'>flipped</span><br/><span style='color:red;text-decoration:line-through;'>wrong</span><br/><span style='color:red;text-decoration:line-through;'>correct</span></td><td></td><td></td></tr>
   </tbody>
 </table>
 
