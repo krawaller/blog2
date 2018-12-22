@@ -11,7 +11,7 @@ function readSource(dir) {
         .readFileSync(path.join(dir, fname, "post.md"))
         .toString();
       const { attributes, body } = fm(postFile);
-      attributes.folder = fname;
+      attributes.folder = path.join(dir, fname);
       attributes.hasStaticContent = fs.existsSync(
         path.join(dir, fname, "static")
       );
