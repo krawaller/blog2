@@ -4,14 +4,20 @@ const path = require("path");
 function makeIndex(data, outputRoot) {
   console.log("Creating index");
 
-  const list = Object.keys(data.posts).map(
-    postId =>
-      `<li><Link href="/posts/${
-        data.posts[postId].attributes.url
-      }" prefetch><a>${data.posts[postId].attributes.title
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")}</a></Link></li>`
-  );
+  const list = Object.keys(data.posts)
+    .sort((k1, k2) => {
+      return data.posts[k1].attributes.date < data.posts[k2].attributes.date
+        ? 1
+        : -1;
+    })
+    .map(
+      postId =>
+        `<li><Link href="/posts/${data.posts[postId].attributes.url}"><a>${
+          data.posts[postId].attributes.date
+        }: ${data.posts[postId].attributes.title
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")}</a></Link></li>`
+    );
 
   const file = `
 import React from 'react';

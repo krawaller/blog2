@@ -15,6 +15,13 @@ function readSource(dir) {
       attributes.hasStaticContent = fs.existsSync(
         path.join(dir, fname, "static")
       );
+      attributes.excerpt = attributes.excerpt.replace(/"/g, "&quot;");
+      attributes.date =
+        attributes.date.getFullYear() +
+        "-" +
+        (attributes.date.getMonth() + 1).toString().padStart(2, "0") +
+        "-" +
+        attributes.date.toString().slice(8, 10);
       return { attributes, body };
     });
   const authors = postList.reduce(
