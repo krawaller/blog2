@@ -79,7 +79,7 @@ function process(data, postId) {
   );
   res = res.replace(/<span class="xml">/g, '<span className="xml">');
   res = res.replace(
-    /<iframe(.*?) src="(.*?)\/([^"]*)"(.*?)>/,
+    /<iframe(.*?) src="(.*?)\/([^"]*)"(.*?)>/g,
     (full, before, urlStart, folder, after) => {
       let [fixed, hash] = folder.split("#");
 
