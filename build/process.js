@@ -49,10 +49,10 @@ function process(data, postId) {
   res = res.replace(/ class="([^"]*)"/g, ' className="$1"');
 
   res = marked(res);
-  res = res.replace(/<img ([^\/>]*)>/g, "<img $1/>");
   res = res.replace(/style="([^"]*)"/g, (full, css) => {
     return `style={${JSON.stringify(toObject(css.replace(/;$/, "")))}}`;
   });
+  res = res.replace(/<img ([^>]*)([^\/>])>/g, "<img $1$2/>");
   res = res.replace(
     /<a ([^>]*?)href="..\/([^"]*?)"([^>]*?)>(.*?)<\/a>/g,
     (full, before, url, after, text) => {

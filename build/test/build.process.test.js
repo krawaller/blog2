@@ -9,7 +9,7 @@ function compare(str, expected) {
     posts: {
       myPost: {
         body: str,
-        attributes: {}
+        attributes: { url: "myUrl" }
       }
     }
   };
@@ -108,6 +108,13 @@ test("handles single quotes for class and style", () => {
   );
 });
 
-test.only("dont mess up img literals", () => {
+test("dont mess up img literals", () => {
   compare(`<img foo="bar" />`, `<img foo="bar" />`);
+});
+
+test("close images with path rewrite and style", () => {
+  compare(
+    `<img src="./static/img/blo.png" style="margin-left: 2em">`,
+    `<img src="../static/posts/myUrl/img/blo.png" style={{"marginLeft":"2em"}}/>`
+  );
 });
