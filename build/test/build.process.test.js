@@ -107,3 +107,7 @@ test("handles single quotes for class and style", () => {
     `<button className="launchbutton" style={{"display":"block"}}>Launch</button>`
   );
 });
+
+test.only("dont mess up img literals", () => {
+  compare(`<img foo="bar" />`, `<img foo="bar" />`);
+});

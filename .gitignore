@@ -1,5 +1,6 @@
 node_modules
 .DS_Store
-next/pages
+next/pages/index.js
+next/pages/posts
 next/static/posts
 .next
