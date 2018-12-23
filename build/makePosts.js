@@ -7,6 +7,12 @@ function writeComp(data, postId, outputRoot) {
   const post = data.posts[postId];
   const compName =
     post.attributes.id[0].toUpperCase() + post.attributes.id.slice(1);
+  const tags = post.attributes.tags.map(
+    tagId =>
+      `<Link href="/tags/${tagId
+        .toLowerCase()
+        .replace(/ /g, "_")}"><a>${tagId}</a></Link>`
+  );
   const file = `
 import React from 'react';
 import Master from '../../components/master';
@@ -14,6 +20,7 @@ import Link from 'next/link';
 
 const ${compName} = () => (
   <Master title="${post.attributes.title}" summary="${post.attributes.excerpt}">
+    <p>Tags: ${tags.join(" ")}</p>
     <div className="post" data-postid="${post.attributes.id}">
       ${process(data, postId)}
     </div>

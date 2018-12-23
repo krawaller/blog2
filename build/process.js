@@ -38,7 +38,7 @@ function process(data, postId) {
   });
 
   res = "\n" + res;
-  res = res.replace(/\n###([^ ])/g, "\n### $1");
+  res = res.replace(/\n([#]*)([^ #])/g, "\n$1 $2");
   res = res.replace(
     /\.\/static\//g,
     "../static/posts/" + post.attributes.url + "/"

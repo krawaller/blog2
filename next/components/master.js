@@ -16,6 +16,7 @@ const Master = ({ title, summary, children }) => (
     <hr />
     <div className="summary">{summary}</div>
     <hr />
+    <h2>{title}</h2>
     <div className="page-content">{children}</div>
   </React.Fragment>
 );

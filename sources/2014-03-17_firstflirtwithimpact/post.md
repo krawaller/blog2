@@ -19,13 +19,13 @@ Our little game is woefully simple and light years from completion, but with fea
 
 Live link [here](http://krawaller.github.io/kratankpubl/live), repo [here](https://github.com/krawaller/kratankpubl) (although with minified impact source, as per the license). Only the green tank can actually fire, which gives him an ever so slight advantage...
 
-##Code
+### Code
 
 We used the Box2D tutorial [top down car physics](https://www.iforce2d.net/b2dtut/top-down-car) as a starting point. It is in java and uses a different Box2D version so it took us a while to get up and running.
 
 Here's a quick rundown of the code in the repo:
 
-### Brains
+#### Brains
 
 The files that make up the non-impact parts of the game (i.e, what we wrote) is all in the [live/lib/game](https://github.com/krawaller/kratankpubl/tree/gh-pages/live/lib/game) folder. This folder contains 3 files:
 
@@ -33,7 +33,7 @@ The files that make up the non-impact parts of the game (i.e, what we wrote) is 
 *    [main.js](https://github.com/krawaller/kratankpubl/blob/gh-pages/live/lib/game/main.js) is the standard Impact entry point. It loads all dependencies, initiates Player objects and makes the spawn a tank each.
 *    [data.js](https://github.com/krawaller/kratankpubl/blob/gh-pages/live/lib/game/data.js) is really just a JSON file of settings for tanks and guns. Plan was to extend this object if in the future we add different kinds of tanks, but for now there's just the one.
 
-### Objects
+#### Objects
 
 There are also 5 files in an [entities](https://github.com/krawaller/kratankpubl/tree/gh-pages/live/lib/game/entities) folder, who fit together like thus:
 
