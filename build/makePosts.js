@@ -15,11 +15,19 @@ function writeComp(data, postId, outputRoot) {
   );
   const file = `
 import React from 'react';
-import Master from '../../components/master';
+import Master from '../../../components/master';
 import Link from 'next/link';
+${post.attributes.css ? "import Head from 'next/head';" : ""}
 
 const ${compName} = () => (
   <Master title="${post.attributes.title}" summary="${post.attributes.excerpt}">
+    ${
+      post.attributes.css
+        ? `<Head><link rel="stylesheet" href="../static/posts/${
+            post.attributes.url
+          }/${post.attributes.css}" /></Head>`
+        : ""
+    }
     <p>Tags: ${tags.join(" ")}</p>
     <div className="post" data-postid="${post.attributes.id}">
       ${process(data, postId)}
@@ -29,9 +37,9 @@ const ${compName} = () => (
 
 export default ${compName};
 `;
-  const out = path.join(outputRoot, "pages", "posts");
+  const out = path.join(outputRoot, "pages", "posts", post.attributes.url);
   fs.ensureDirSync(out);
-  fs.writeFileSync(path.join(out, post.attributes.url + ".js"), file);
+  fs.writeFileSync(path.join(out, "index.js"), file);
 }
 
 function makePosts(data, outputRoot) {

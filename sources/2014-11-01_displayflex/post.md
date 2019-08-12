@@ -7,6 +7,7 @@ tags: [css, css3, flexbox]
 date: 2014-11-01
 excerpt: "Dissecting a tournament bracket built with the CSS3 flexbox tech"
 type: post
+css: styles.css
 ---
 
 ###Sports! Go team!
@@ -29,94 +30,96 @@ I took the liberty of distilling the HTML down to its bare minimum:
 
 ```html
 <main>
-	<ul>
-		<li>&nbsp;</li>
+  <ul>
+    <li>&nbsp;</li>
 
-		<li class="game game-top winner">Lousville <span>79</span></li>
-		<li>&nbsp;</li>
-		<li class="game game-bottom ">NC A&T <span>48</span></li>
+    <li class="game game-top winner">Lousville <span>79</span></li>
+    <li>&nbsp;</li>
+    <li class="game game-bottom ">NC A&T <span>48</span></li>
 
-		<li>&nbsp;</li>
-		
-		<li class="game game-top winner">Colo St <span>84</span></li>
-		<li>&nbsp;</li>
-		<li class="game game-bottom ">Missouri <span>72</span></li>
+    <li>&nbsp;</li>
 
-		<li>&nbsp;</li>
+    <li class="game game-top winner">Colo St <span>84</span></li>
+    <li>&nbsp;</li>
+    <li class="game game-bottom ">Missouri <span>72</span></li>
 
-		<!-- REDACTED SOME GAMES --->
-		
-		<li class="game game-top winner">Duke <span>73</span></li>
-		<li>&nbsp;</li>
-		<li class="game game-bottom ">Albany <span>61</span></li>
+    <li>&nbsp;</li>
 
-		<li>&nbsp;</li>
-	</ul>
-	<ul>
-		<!-- redacted, same structure as round 1 -->
-	</ul>
-	<ul>
-		<!-- redacted -->	
-	</ul>
-	<ul>
-		<li>&nbsp;</li>
-		
-		<li class="game game-top winner">Lousville <span>85</span></li>
-		<li>&nbsp;</li>
-		<li class="game game-bottom ">Duke <span>63</span></li>
-		
-		<li>&nbsp;</li>
-	</ul>		
+    <!-- REDACTED SOME GAMES --->
+
+    <li class="game game-top winner">Duke <span>73</span></li>
+    <li>&nbsp;</li>
+    <li class="game game-bottom ">Albany <span>61</span></li>
+
+    <li>&nbsp;</li>
+  </ul>
+  <ul>
+    <!-- redacted, same structure as round 1 -->
+  </ul>
+  <ul>
+    <!-- redacted -->
+  </ul>
+  <ul>
+    <li>&nbsp;</li>
+
+    <li class="game game-top winner">Lousville <span>85</span></li>
+    <li>&nbsp;</li>
+    <li class="game game-bottom ">Duke <span>63</span></li>
+
+    <li>&nbsp;</li>
+  </ul>
 </main>
 ```
 
 And here's the magical CSS (adapted to the simpler HTML):
 
 ```css
-main, ul {
-  display:flex;
+main,
+ul {
+  display: flex;
 }
 
 ul {
-  flex-direction:column;
+  flex-direction: column;
   width: 200px;
-  list-style:none;
-  padding:0;
+  list-style: none;
+  padding: 0;
 }
 
 .game + li {
-  flex-grow:1;
+  flex-grow: 1;
 }
 
-li:first-child,li:last-child {
-  flex-grow:.5;
+li:first-child,
+li:last-child {
+  flex-grow: 0.5;
 }
 
 .game {
-  padding-left:20px;
+  padding-left: 20px;
 }
 
 .winner {
-  font-weight:bold;
+  font-weight: bold;
 }
 
 .game span {
-  float:right;
-  margin-right:5px;
+  float: right;
+  margin-right: 5px;
 }
 
 .game-top {
-  border-bottom:1px solid #aaa;
+  border-bottom: 1px solid #aaa;
 }
 
 .game-top + li {
-  border-right:1px solid #aaa; min-height:40px;
+  border-right: 1px solid #aaa;
+  min-height: 40px;
 }
 
 .game-bottom {
-  border-top:1px solid #aaa;
+  border-top: 1px solid #aaa;
 }
-
 ```
 
 ###The magic
@@ -134,13 +137,18 @@ All `flex` boxes have a `flex-direction` which is `row` (default) or `column`. T
 Now for the interesting stuff - what's actually going on inside the columns? Here's how the rules will be applied:
 
 ```html
-<ul> <!-- flex column -->
-  <li> <!-- first and last li will be given flex-grow .5 -->
-  <li class='game-top'> <!-- home team gets a border-bottom -->
-  <li> <!-- li between teams gets min-height 40, a border-right and flex-grow 1 -->
-  <li class='game-bottom'> <!-- away team gets border-top -->
-  <li> <!-- li between games just gets flex-grow 1 -->
-  <!-- ...and so on... -->
+<ul>
+  <!-- flex column -->
+  <li><!-- first and last li will be given flex-grow .5 --></li>
+  <li class="game-top"><!-- home team gets a border-bottom --></li>
+  <li>
+    <!-- li between teams gets min-height 40, a border-right and flex-grow 1 -->
+  </li>
+  <li class="game-bottom"><!-- away team gets border-top --></li>
+  <li>
+    <!-- li between games just gets flex-grow 1 -->
+    <!-- ...and so on... -->
+  </li>
 </ul>
 ```
 
@@ -164,8 +172,8 @@ To make this more visible here's the bracket again but with the `flex-grow:1` it
 
 So what did we actually do? In essence we used flex for two different things:
 
-*    By making the outer main element a flex row we used the default `stretch` value of `align-items` to make sure the columns would get equal height. This would otherwise be difficult to do.
-*    By then making each column a flex column, we used `flex-grow` to make sure the elements filled out the column height in the way we wanted. This would be really difficult by other means!
+- By making the outer main element a flex row we used the default `stretch` value of `align-items` to make sure the columns would get equal height. This would otherwise be difficult to do.
+- By then making each column a flex column, we used `flex-grow` to make sure the elements filled out the column height in the way we wanted. This would be really difficult by other means!
 
 Note that for compatibility with Safari, iOS Safari and IE10 we have to use `display: -webkit-flex`, `-webkit-flex-direction: column` etc.
 
@@ -178,19 +186,20 @@ If there had been some css pseudo class equivalents of `:before` and `:after` th
 The exception is the first and last spacer in the round - them we can create using pseudo classes on the columns! So we replace this rule...
 
 ```css
-li:first-child,li:last-child {
-  flex-grow:.5;
+li:first-child,
+li:last-child {
+  flex-grow: 0.5;
 }
 ```
 
 ...with this rule...
 
-
 ```css
-ul:before, ul:after {
+ul:before,
+ul:after {
   content: " ";
   display: inline-block;
-  flex-grow:.5;
+  flex-grow: 0.5;
 }
 ```
 
@@ -198,36 +207,36 @@ ul:before, ul:after {
 
 ```html
 <main>
-	<ul>
-		<li class="game game-top winner">Lousville <span>79</span></li>
-		<li>&nbsp;</li>
-		<li class="game game-bottom ">NC A&T <span>48</span></li>
+  <ul>
+    <li class="game game-top winner">Lousville <span>79</span></li>
+    <li>&nbsp;</li>
+    <li class="game game-bottom ">NC A&T <span>48</span></li>
 
-		<li>&nbsp;</li>
-		
-		<li class="game game-top winner">Colo St <span>84</span></li>
-		<li>&nbsp;</li>
-		<li class="game game-bottom ">Missouri <span>72</span></li>
+    <li>&nbsp;</li>
 
-		<li>&nbsp;</li>
+    <li class="game game-top winner">Colo St <span>84</span></li>
+    <li>&nbsp;</li>
+    <li class="game game-bottom ">Missouri <span>72</span></li>
 
-		<!-- REDACTED SOME GAMES --->
-		
-		<li class="game game-top winner">Duke <span>73</span></li>
-		<li>&nbsp;</li>
-		<li class="game game-bottom ">Albany <span>61</span></li>
-	</ul>
-	<ul>
-		<!-- redacted, same structure as round 1 -->
-	</ul>
-	<ul>
-		<!-- redacted -->	
-	</ul>
-	<ul>
-		<li class="game game-top winner">Lousville <span>85</span></li>
-		<li>&nbsp;</li>
-		<li class="game game-bottom ">Duke <span>63</span></li>
-	</ul>		
+    <li>&nbsp;</li>
+
+    <!-- REDACTED SOME GAMES --->
+
+    <li class="game game-top winner">Duke <span>73</span></li>
+    <li>&nbsp;</li>
+    <li class="game game-bottom ">Albany <span>61</span></li>
+  </ul>
+  <ul>
+    <!-- redacted, same structure as round 1 -->
+  </ul>
+  <ul>
+    <!-- redacted -->
+  </ul>
+  <ul>
+    <li class="game game-top winner">Lousville <span>85</span></li>
+    <li>&nbsp;</li>
+    <li class="game game-bottom ">Duke <span>63</span></li>
+  </ul>
 </main>
 ```
 
@@ -238,7 +247,6 @@ ul:before, ul:after {
 <ul>
 <li class="game game-top winner">Lousville <span>79</span></li><li>&nbsp;</li><li class="game game-bottom ">NC A&T <span>48</span></li><li>&nbsp;</li><li class="game game-top winner">Colo St <span>84</span></li><li>&nbsp;</li><li class="game game-bottom ">Missouri <span>72</span></li><li>&nbsp;</li><li class="game game-top ">Oklahoma St <span>55</span></li><li>&nbsp;</li><li class="game game-bottom winner">Oregon <span>68</span></li><li>&nbsp;</li><li class="game game-top winner">Saint Louis <span>64</span></li><li>&nbsp;</li><li class="game game-bottom ">New Mexico St <span>44</span></li><li>&nbsp;</li><li class="game game-top winner">Memphis <span>54</span></li><li>&nbsp;</li><li class="game game-bottom ">St Mary's <span>52</span></li><li>&nbsp;</li><li class="game game-top winner">Mich St <span>65</span></li><li>&nbsp;</li><li class="game game-bottom ">Valparaiso <span>54</span></li><li>&nbsp;</li><li class="game game-top winner">Creighton <span>67</span></li><li>&nbsp;</li><li class="game game-bottom ">Cincinnati <span>63</span></li><li>&nbsp;</li><li class="game game-top winner">Duke <span>73</span></li><li>&nbsp;</li><li class="game game-bottom ">Albany <span>61</span></li></ul><ul><li class="game game-top winner">Lousville <span>82</span></li><li>&nbsp;</li><li class="game game-bottom ">Colo St <span>56</span></li><li>&nbsp;</li><li class="game game-top winner">Oregon <span>74</span></li><li>&nbsp;</li><li class="game game-bottom ">Saint Louis <span>57</span></li><li>&nbsp;</li><li class="game game-top ">Memphis <span>48</span></li><li>&nbsp;</li><li class="game game-bottom winner">Mich St <span>70</span></li><li>&nbsp;</li><li class="game game-top ">Creighton <span>50</span></li><li>&nbsp;</li><li class="game game-bottom winner">Duke <span>66</span></li></ul><ul><li class="game game-top winner">Lousville <span>77</span></li><li>&nbsp;</li><li class="game game-bottom ">Oregon <span>69</span></li><li>&nbsp;</li><li class="game game-top ">Mich St <span>61</span></li><li>&nbsp;</li><li class="game game-bottom winner">Duke <span>71</span></li></ul><ul><li class="game game-top winner">Lousville <span>85</span></li><li>&nbsp;</li><li class="game game-bottom ">Duke <span>63</span></li></ul></main>
 </div>
-
 
 ###Wrapping up
 
