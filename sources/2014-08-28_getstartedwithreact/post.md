@@ -3,7 +3,7 @@ url: "a-react-js-case-study"
 id: getstartedwithreact
 title: A React.js case study
 author: david
-tags: [react,case study]
+tags: [react, case study]
 date: 2014-08-28
 excerpt: This post dissects a memory game built with React, focusing on structure and the React way of thinking
 type: post
@@ -29,9 +29,9 @@ This is the full contents of the repo:
 
 The `lib` folder contains the only 3 dependencies:
 
-*    `react.js` is the react librabry itself. We don't need the add-on version, just plain vanilla React.
-*    `JSXTransformer.js` translates the JSX syntax. In production this should of course be part of the build process.
-*    `lodash.js` is used merely to make for some cleaner code in the game logic.
+- `react.js` is the react librabry itself. We don't need the add-on version, just plain vanilla React.
+- `JSXTransformer.js` translates the JSX syntax. In production this should of course be part of the build process.
+- `lodash.js` is used merely to make for some cleaner code in the game logic.
 
 The `src` folder then contains files for all of our React components. The hierarchy looks like thus:
 
@@ -76,18 +76,18 @@ First off is the Game component. It is responsible for switching between the for
 /** @jsx React.DOM */
 
 var Game = React.createClass({
-  getInitialState: function(){
-    return {playing: false,tiles:[]};
+  getInitialState: function() {
+    return { playing: false, tiles: [] };
   },
-  startGame: function(words){
+  startGame: function(words) {
     this.setState({
-      tiles:_.shuffle(words.concat(words)),
-      playing:true,
-      seed:Math.random()
+      tiles: _.shuffle(words.concat(words)),
+      playing: true,
+      seed: Math.random()
     });
   },
-  endGame: function(){
-    this.setState({playing:false});
+  endGame: function() {
+    this.setState({ playing: false });
   },
   render: function() {
     return (
@@ -96,7 +96,11 @@ var Game = React.createClass({
           <Wordform startGame={this.startGame} />
         </div>
         <div className={this.state.playing ? "showing" : "hidden"}>
-          <Board endGame={this.endGame} tiles={this.state.tiles} key={this.state.seed}/>
+          <Board
+            endGame={this.endGame}
+            tiles={this.state.tiles}
+            key={this.state.seed}
+          />
         </div>
       </div>
     );
@@ -105,7 +109,7 @@ var Game = React.createClass({
 ```
 
 <table>
-  <thead><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></thead>
+  <thead><tr><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></tr></thead>
   <tbody>
     <tr><td></td><td>playing<br/>tiles</td><td>Wordform<br/>Board</td><td></td></tr>
   </tbody>
@@ -113,13 +117,13 @@ var Game = React.createClass({
 
 The `Game` component has two `state` variables:
 
-*    `playing` which controls which sub component to show or hide.
-*    `tiles` which contain the words passed to `startGame`, which will be triggered inside `Wordform`.
+- `playing` which controls which sub component to show or hide.
+- `tiles` which contain the words passed to `startGame`, which will be triggered inside `Wordform`.
 
 `Game` has two sub components:
 
-*    `Wordform`, which it passes the `startGame` method.
-*    `Board`, which is passed the `endGame` method and the `tiles`.
+- `Wordform`, which it passes the `startGame` method.
+- `Board`, which is passed the `endGame` method and the `tiles`.
 
 Note that `Game` always renders both the `Board` and the `Wordform`. This has to do with React component lifecycles. I first tried to do this:
 
@@ -127,12 +131,11 @@ Note that `Game` always renders both the `Board` and the `Wordform`. This has to
 return (
   <div>{this.state.playing ? <Board endGame={this.endGame} tiles={this.state.tiles}/> : <Wordform startGame={this.startGame} />}</div>
 );
-``` 
+```
 
 ...which actually worked, but generated a React error message about an unmounted component. The official docs also state that instead of generating different components, we should generate them all and show/hide them as needed.
 
 Also related to the life cycle of a component is the `key` property of the `Board`. Changing `key` ensures we have a new `Board` instance whenever we enter new words in the form, otherwise React will just repopulate the existing `Board` with new words. That means that previously flipped tiles will still be flipped, even though they now contain new words. Remove the `key` property and try it!
-
 
 ###The Wordform component
 
@@ -142,23 +145,33 @@ This component displays a form for entering words to be used as tiles.
 /** @jsx React.DOM */
 
 var Wordform = React.createClass({
-  getInitialState: function(){
-    return {error:""};
+  getInitialState: function() {
+    return { error: "" };
   },
-  setError: function(msg){
-    this.setState({error:msg});
-    setTimeout((function(){
-      this.setState({error:""});
-    }).bind(this),2000);
+  setError: function(msg) {
+    this.setState({ error: msg });
+    setTimeout(
+      function() {
+        this.setState({ error: "" });
+      }.bind(this),
+      2000
+    );
   },
-  submitWords: function(e){
+  submitWords: function(e) {
     var node = this.refs["wordfield"].getDOMNode(),
-        words = (node.value || "").trim().replace(/\W+/g," ").split(" ");
+      words = (node.value || "")
+        .trim()
+        .replace(/\W+/g, " ")
+        .split(" ");
     if (words.length <= 2) {
       this.setError("Enter at least 3 words!");
     } else if (words.length !== _.unique(words).length) {
       this.setError("Words should be unique!");
-    } else if (_.filter(words,function(w){return w.length > 8}).length) {
+    } else if (
+      _.filter(words, function(w) {
+        return w.length > 8;
+      }).length
+    ) {
       this.setError("Words should not be longer than 8 characters!");
     } else {
       this.props.startGame(words);
@@ -170,9 +183,11 @@ var Wordform = React.createClass({
     return (
       <form onSubmit={this.submitWords}>
         <p>Enter words separated by spaces!</p>
-        <input type='text' ref='wordfield' />
-        <button type='submit'>Start!</button>
-        <p className='error' ref='errormsg'>{this.state.error}</p>
+        <input type="text" ref="wordfield" />
+        <button type="submit">Start!</button>
+        <p className="error" ref="errormsg">
+          {this.state.error}
+        </p>
       </form>
     );
   }
@@ -180,7 +195,7 @@ var Wordform = React.createClass({
 ```
 
 <table>
-  <thead><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></thead>
+  <thead><tr><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></tr></thead>
   <tbody>
     <tr><td>startGame()</td><td>error</td><td></td><td></td></tr>
   </tbody>
@@ -201,43 +216,50 @@ Here's the code for the `Board` component, which displays the game board:
 
 var Board = React.createClass({
   getInitialState: function() {
-    return {found: 0, message: "choosetile"};
+    return { found: 0, message: "choosetile" };
   },
-  clickedTile: function(tile){
-    if (!this.wait){
-      // turn up lone tile 
-      if (!this.flippedtile){
+  clickedTile: function(tile) {
+    if (!this.wait) {
+      // turn up lone tile
+      if (!this.flippedtile) {
         this.flippedtile = tile;
         tile.reveal();
-        this.setState({message:"findmate"});
-      // clicked second
+        this.setState({ message: "findmate" });
+        // clicked second
       } else {
         this.wait = true;
-        if (this.flippedtile.props.word === tile.props.word){
-          this.setState({found: this.state.found+1,message: "foundmate"});
+        if (this.flippedtile.props.word === tile.props.word) {
+          this.setState({ found: this.state.found + 1, message: "foundmate" });
           tile.succeed();
           this.flippedtile.succeed();
         } else {
-          this.setState({message:"wrong"});
+          this.setState({ message: "wrong" });
           tile.fail();
           this.flippedtile.fail();
         }
-        setTimeout((function(){
-          this.wait = false;
-          this.setState({message:"choosetile"});
-          delete this.flippedtile;
-        }).bind(this),2000);
+        setTimeout(
+          function() {
+            this.wait = false;
+            this.setState({ message: "choosetile" });
+            delete this.flippedtile;
+          }.bind(this),
+          2000
+        );
       }
     }
   },
   render: function() {
-    var tiles = this.props.tiles.map(function(b,n){
+    var tiles = this.props.tiles.map(function(b, n) {
       return <Tile word={b} key={n} clickedTile={this.clickedTile} />;
-    },this);
+    }, this);
     return (
       <div>
         <button onClick={this.props.endGame}>End game</button>
-        <Status found={this.state.found} max={this.props.tiles.length/2} message={this.state.message} />
+        <Status
+          found={this.state.found}
+          max={this.props.tiles.length / 2}
+          message={this.state.message}
+        />
         {tiles}
       </div>
     );
@@ -246,7 +268,7 @@ var Board = React.createClass({
 ```
 
 <table>
-  <thead><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></thead>
+  <thead><tr><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></tr></thead>
   <tbody>
     <tr><td>tiles<br/>endGame()</td><td>found<br/>message</td><td>Status<br/>Tile</td><td>wait<br/>flippedtile</td></tr>
   </tbody>
@@ -256,22 +278,19 @@ The Board component was passed a `tiles` array and an `endGame` callback from it
 
 It has two state variables:
 
-*    `found` which counts how many pairs the player has found
-*    `message` which contains the id of the message to display to the player
+- `found` which counts how many pairs the player has found
+- `message` which contains the id of the message to display to the player
 
 When rendered it contains two different sub components:
 
-*    `Status`, which is passed `found`, `max` and `message`. This component deals with the instruction to the player above the tiles.
-*    `Tile`, which represents an individual tile. Each tile is passed a `word` and the `clickedTile` callback.
+- `Status`, which is passed `found`, `max` and `message`. This component deals with the instruction to the player above the tiles.
+- `Tile`, which represents an individual tile. Each tile is passed a `word` and the `clickedTile` callback.
 
 The `clickedTile` callback will be called from the individual tiles, with the tile instance as parameter. As you can see, this method contains the full logic for the actual game.
 
 Note how this method uses the instance variables `this.wait` and `this.flippedtile`. These do NOT need to be `state` variables, as they don't affect the rendering! Only state which might affect what the component looks like need to be stored using `this.setState`.
 
-
-
 ###The Status component
-
 
 ```javascript
 /** @jsx React.DOM */
@@ -295,7 +314,7 @@ var Status = React.createClass({
 ```
 
 <table>
-  <thead><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></thead>
+  <thead><tr><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></tr></thead>
   <tbody>
     <tr><td>found<br/>max<br/>message</td><td></td><td></td><td></td></tr>
   </tbody>
@@ -314,27 +333,39 @@ This component represents an individual tile.
 
 var Tile = React.createClass({
   getInitialState: function() {
-    return {flipped: false};
+    return { flipped: false };
   },
-  catchClick: function(){
-    if (!this.state.flipped){
+  catchClick: function() {
+    if (!this.state.flipped) {
       this.props.clickedTile(this);
     }
   },
-  reveal: function(){
-    this.setState({flipped:true});
+  reveal: function() {
+    this.setState({ flipped: true });
   },
-  fail: function(){
-    this.setState({flipped:true,wrong:true});
-    setTimeout((function(){this.setState({flipped:false,wrong:false});}).bind(this),2000);
+  fail: function() {
+    this.setState({ flipped: true, wrong: true });
+    setTimeout(
+      function() {
+        this.setState({ flipped: false, wrong: false });
+      }.bind(this),
+      2000
+    );
   },
-  succeed: function(){
-    this.setState({flipped:true,correct:true});
+  succeed: function() {
+    this.setState({ flipped: true, correct: true });
   },
   render: function() {
-    var classes = _.reduce(["flipped","correct","wrong"],function(m,c){return m+(this.state[c]?c+" ":"");},"",this);
+    var classes = _.reduce(
+      ["flipped", "correct", "wrong"],
+      function(m, c) {
+        return m + (this.state[c] ? c + " " : "");
+      },
+      "",
+      this
+    );
     return (
-      <div className={'brick '+(classes || '')} onClick={this.catchClick}>
+      <div className={"brick " + (classes || "")} onClick={this.catchClick}>
         <div className="front">?</div>
         <div className="back">{this.props.word}</div>
       </div>
@@ -344,7 +375,7 @@ var Tile = React.createClass({
 ```
 
 <table>
-  <thead><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></thead>
+  <thead><tr><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></tr></thead>
   <tbody>
     <tr><td>word<br/>clickedTile()</td><td>flipped<br/>wrong<br/>correct</td><td></td><td></td></tr>
   </tbody>
@@ -354,12 +385,11 @@ It was passed two properties from the parent; a `word` variable and a `clickedTi
 
 The component has three `state` variables:
 
-*    `flipped` is a flag to show if the tile has been flipped up or not. While flipped it will not receive clicks.
-*    `wrong` is true if the tile was part of a failed match attempt.
-*    `correct` is true if the tile has been matched to a partner.
+- `flipped` is a flag to show if the tile has been flipped up or not. While flipped it will not receive clicks.
+- `wrong` is true if the tile was part of a failed match attempt.
+- `correct` is true if the tile has been matched to a partner.
 
 When clicked the component will call the `clickedTile` callback passing itself as a parameter. All game logic is in `Board`, as we saw previously.
-
 
 ###Wrapping up
 

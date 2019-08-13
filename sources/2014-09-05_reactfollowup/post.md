@@ -3,7 +3,7 @@ url: "a-react-js-case-study-follow-up"
 id: reactfollowup
 title: A React.js case study follow-up
 author: david
-tags: [react,underscore,case study]
+tags: [react, underscore, case study]
 date: 2014-09-05
 excerpt: This post details a refactoring of the previous React case study. We also touch on some Underscore usage.
 type: post
@@ -19,7 +19,6 @@ Since this was my first foray into React the code was, well, less than perfect. 
 
 After digesting all the feedback, and having spent more time with the React docs, I went over the Memory game code again. This post walks through those changes and the lessons learned. The text assumes you've already read the [previous post](../a-react-js-case-study), so please hop over there if you came straight here.
 
-
 ###ES6 Transformation
 
 First off, Ian and others pointed out that the JSX Transformation also contains support for some ES6 features, so there's really no reason not to use them! Throughout the new code I've therefore made use of these, primarily the [Arrow Functions](http://tc39wiki.calculist.org/es6/arrow-functions/) and [Method Definition Shorthand](http://tc39wiki.calculist.org/es6/object-literal-enhancements/).
@@ -28,15 +27,14 @@ The Arrow Function syntax has many nuances, but primarily it is a way to define 
 
 ```javascript
 // old way
-var myFunc = (function(arg){
-	// do stuff
-}).bind(this);
+var myFunc = function(arg) {
+  // do stuff
+}.bind(this);
 
 // ES6 way
-var myFunc = (arg)=>{
-	// do stuff
-}
-
+var myFunc = arg => {
+  // do stuff
+};
 ```
 
 And here's the method definition shorthand example:
@@ -57,7 +55,6 @@ var o = {
 };
 ```
 
-
 ###The new Game component code
 
 Now to the React stuff! Starting again with the top-level `Game` component, here's the updated code:
@@ -66,26 +63,29 @@ Now to the React stuff! Starting again with the top-level `Game` component, here
 /** @jsx React.DOM */
 
 var Game = React.createClass({
-  getInitialState() {return {};},
-  startGame(words){
+  getInitialState() {
+    return {};
+  },
+  startGame(words) {
     this.setState({
-      words:_.shuffle(words.concat(words))
+      words: _.shuffle(words.concat(words))
     });
   },
-  endGame(){
-    this.setState({words:undefined});
+  endGame() {
+    this.setState({ words: undefined });
   },
-  render(){
-    return (
-      this.state.words ? <Board onEndGame={this.endGame} words={this.state.words}/>
-      : <Wordform onWordsEntered={this.startGame} />
+  render() {
+    return this.state.words ? (
+      <Board onEndGame={this.endGame} words={this.state.words} />
+    ) : (
+      <Wordform onWordsEntered={this.startGame} />
     );
   }
 });
 ```
 
 <table>
-  <thead><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></thead>
+  <thead><tr><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></tr></thead>
   <tbody>
     <tr><td></td><td><span style='color:red;text-decoration:line-through;'>playing</span><br/>tiles</td><td>Wordform<br/>Board</td><td></td></tr>
   </tbody>
@@ -95,7 +95,6 @@ For each component I'll also show the same table as before, highlighting any dif
 
 As you can see here, I removed the `playing` flag from `Game`, opting instead to set `words` to undefined on game end. Slightly less obvious code, but one less state variable. Which is preferrable is pure philosophy, and mine is to go for brevity.
 
-
 ###Show &amp; hide versus rendering only relevant components
 
 in my first version I alternated between showing the `Board` and `Wordform` through always rendering both, but showing and hiding them as appropriate. This is the old render function containing this approach:
@@ -104,7 +103,12 @@ in my first version I alternated between showing the `Board` and `Wordform` thro
 return (
   <div>
     <div className={this.state.playing ? "showing" : "hidden"}>
-      <Board endGame={this.endGame} tiles={this.state.tiles} max={this.state.tiles.length/2} key={this.state.seed}/>
+      <Board
+        endGame={this.endGame}
+        tiles={this.state.tiles}
+        max={this.state.tiles.length / 2}
+        key={this.state.seed}
+      />
     </div>
     <div className={this.state.playing ? "hidden" : "showing"}>
       <Wordform startGame={this.startGame} />
@@ -116,9 +120,10 @@ return (
 By misreading the docs and misunderstanding an error message, I was fooled into believing that this was the way to go, instead of choosing what component to render. As it turns out, there is no problem with the latter approach, which of course makes for much cleaner code:
 
 ```javascript
-return (
-  this.state.words ? <Board onEndGame={this.endGame} words={this.state.words}/>
-  : <Wordform onWordsEntered={this.startGame} />
+return this.state.words ? (
+  <Board onEndGame={this.endGame} words={this.state.words} />
+) : (
+  <Wordform onWordsEntered={this.startGame} />
 );
 ```
 
@@ -132,7 +137,6 @@ Sharp eyes will also note how the new version passes `this.startGame` to `Wordfo
 
 Similar renamings have been done throughout the code base.
 
-
 ###The new Wordform component code
 
 Here's what the new `Wordform` component code looks like:
@@ -144,25 +148,30 @@ var Wordform = React.createClass({
   propTypes: {
     onWordsEntered: React.PropTypes.func.isRequired
   },
-  getInitialState(){
-    return {error:''};
+  getInitialState() {
+    return { error: "" };
   },
-  setError(msg){
-    this.setState({error:msg});
-    setTimeout(()=>{this.setState({error:''});},2000);
+  setError(msg) {
+    this.setState({ error: msg });
+    setTimeout(() => {
+      this.setState({ error: "" });
+    }, 2000);
   },
-  submitWords(e){
-    var node = this.refs['wordfield'].getDOMNode(),
-        words = (node.value || '').trim().replace(/\W+/g,' ').split(' ');
+  submitWords(e) {
+    var node = this.refs["wordfield"].getDOMNode(),
+      words = (node.value || "")
+        .trim()
+        .replace(/\W+/g, " ")
+        .split(" ");
     if (words.length <= 2) {
-      this.setError('Enter at least 3 words!');
+      this.setError("Enter at least 3 words!");
     } else if (words.length !== _.unique(words).length) {
-      this.setError('Don\'t enter duplicate words!');
-    } else if (_.find(words,(w)=>w.length > 8)) {
-      this.setError('Words should not be longer than 8 characters!');
+      this.setError("Don't enter duplicate words!");
+    } else if (_.find(words, w => w.length > 8)) {
+      this.setError("Words should not be longer than 8 characters!");
     } else {
       this.props.onWordsEntered(words);
-      node.value = '';
+      node.value = "";
     }
     return false;
   },
@@ -170,9 +179,11 @@ var Wordform = React.createClass({
     return (
       <form onSubmit={this.submitWords}>
         <p>Enter words separated by spaces!</p>
-        <input type='text' ref='wordfield' />
-        <button type='submit'>Start!</button>
-        <p className='error' ref='errormsg'>{this.state.error}</p>
+        <input type="text" ref="wordfield" />
+        <button type="submit">Start!</button>
+        <p className="error" ref="errormsg">
+          {this.state.error}
+        </p>
       </form>
     );
   }
@@ -180,7 +191,7 @@ var Wordform = React.createClass({
 ```
 
 <table>
-  <thead><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></thead>
+  <thead><tr><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></tr></thead>
   <tbody>
     <tr><td>*onWordsEntered()*</td><td>error</td><td></td><td></td></tr>
   </tbody>
@@ -214,19 +225,22 @@ Returning an empty object here would suffice, but explicitly setting the `error`
 
 This, along with the `propTypes` literal above, goes a long way to help the reader to gain immediate understanding of the component's functionality. Together they give you the same information as my data table!
 
-
 ###Underscore elitism
 
 There is one other tiny change regarding `Wordform`; in the old code, I used the following expression to test if any word was too long;
 
 ```javascript
-_.filter(words,function(w){return w.length > 8;}).length
+_.filter(words, function(w) {
+  return w.length > 8;
+}).length;
 ```
 
 ...while in the new code, I'm doing this (shown here without ES6 stuff):
 
 ```javascript
-_.find(words,function(w){ return w.length > 8;})
+_.find(words, function(w) {
+  return w.length > 8;
+});
 ```
 
 Functionally it makes absolutely no difference, but it touches on something I feel is important, albeight on a pedantic level - knowing your tools is important. Learning Underscore/Lodash (along with functional programming) levelled me up quite a bit as a programmer, and I took pride in being able to write shorter code. Making this &quot;mistake&quot; therefore itched quite a bit.
@@ -246,50 +260,69 @@ var Board = React.createClass({
   getInitialState() {
     return {
       found: 0,
-      message: 'choosetile',
-      tilestates: _.map(_.range(this.props.words.length),()=>'unturned')
+      message: "choosetile",
+      tilestates: _.map(_.range(this.props.words.length), () => "unturned")
     };
   },
   componentWillMount() {
-    this.max = this.props.words.length/2;
+    this.max = this.props.words.length / 2;
   },
-  clickedTile(index){
-    if (this.state.tilestates[index]==='unturned'){
+  clickedTile(index) {
+    if (this.state.tilestates[index] === "unturned") {
       // turn up lone tile
       if (this.flippedTileIndex === undefined) {
         this.flippedTileIndex = index;
         this.setState({
-          message: 'findmate',
-          tilestates: _.extend(this.state.tilestates,_.object([index],['revealed']))
+          message: "findmate",
+          tilestates: _.extend(
+            this.state.tilestates,
+            _.object([index], ["revealed"])
+          )
         });
-      // clicked second tile
+        // clicked second tile
       } else {
         var otherindex = this.flippedTileIndex,
-            matched = this.props.words[index] === this.props.words[otherindex];
+          matched = this.props.words[index] === this.props.words[otherindex];
         delete this.flippedTileIndex;
         // found mathing pair
         if (matched) {
           this.setState({
-            found: this.state.found+1,
-            message: 'foundmate',
-            tilestates: _.extend(this.state.tilestates,_.object([index,otherindex],['correct','correct']))
+            found: this.state.found + 1,
+            message: "foundmate",
+            tilestates: _.extend(
+              this.state.tilestates,
+              _.object([index, otherindex], ["correct", "correct"])
+            )
           });
-        // pair didn't match
+          // pair didn't match
         } else {
           this.setState({
-            message: 'wrong',
-            tilestates: _.extend(this.state.tilestates,_.object([index,otherindex],['wrong','wrong']))
+            message: "wrong",
+            tilestates: _.extend(
+              this.state.tilestates,
+              _.object([index, otherindex], ["wrong", "wrong"])
+            )
           });
         }
         // restore UI message after 1500, and flip back eventual failed attempt
-        setTimeout(()=>{
+        setTimeout(() => {
           if (this.isMounted()) {
             this.setState({
-              message: this.state.message === 'findmate' ? 'findmate' : this.max === this.state.found ? 'foundall' : 'choosetile',
-              tilestates: matched ? this.state.tilestates : _.extend(this.state.tilestates,_.object([index,otherindex],['unturned','unturned']))
+              message:
+                this.state.message === "findmate"
+                  ? "findmate"
+                  : this.max === this.state.found
+                  ? "foundall"
+                  : "choosetile",
+              tilestates: matched
+                ? this.state.tilestates
+                : _.extend(
+                    this.state.tilestates,
+                    _.object([index, otherindex], ["unturned", "unturned"])
+                  )
             });
           }
-        },1500);
+        }, 1500);
       }
     }
   },
@@ -297,10 +330,16 @@ var Board = React.createClass({
     return (
       <div>
         <button onClick={this.props.onEndGame}>End game</button>
-        <Status found={this.state.found} max={this.max} message={this.state.message} />
-        {this.props.words.map(
-          (b,n) => <div onClick={_.partial(this.clickedTile,n)}><Tile word={b} status={this.state.tilestates[n]} /></div>
-        )}
+        <Status
+          found={this.state.found}
+          max={this.max}
+          message={this.state.message}
+        />
+        {this.props.words.map((b, n) => (
+          <div onClick={_.partial(this.clickedTile, n)}>
+            <Tile word={b} status={this.state.tilestates[n]} />
+          </div>
+        ))}
       </div>
     );
   }
@@ -308,7 +347,7 @@ var Board = React.createClass({
 ```
 
 <table>
-  <thead><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></thead>
+  <thead><tr><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></tr></thead>
   <tbody>
     <tr><td>*words*<br/>*onEndGame()*</td><td>found<br/>message<br/><span style='color:green;'>**tilestates**</span></td><td>Status<br/>Tile</td><td><span style='color:red;text-decoration:line-through;'>wait</span><br/>*flippedTileIndex*<br/><span style='color:green;'>**max**</span></td></tr>
   </tbody>
@@ -327,13 +366,19 @@ Therefore I decided to simply remove it, hence the stricken out `wait` instance 
 In the previous version `Board` didn't make use of `max`. It was just passed as a property to `Status`, calculated at that point:
 
 ```javascript
-<Status found={this.state.found} max={this.props.tiles.length/2} message={this.state.message} />
+<Status
+  found={this.state.found}
+  max={this.props.tiles.length / 2}
+  message={this.state.message}
+/>
 ```
 
 Inside `Status` we used the `max` information to decide what to display when the message instruction from `Board` was `choosetile`:
 
 ```javascript
-this.props.message === "choosetile" && found === max ? "foundall" : this.props.message
+this.props.message === "choosetile" && found === max
+  ? "foundall"
+  : this.props.message;
 ```
 
 Going over the code it felt weird to have just that particular logic in `Status`. It seemed to belong in the parent, so I decided to move it there. But that means `Board` now needs to use the `max` value, which raised a seemingly innocent question - how to handle that?
@@ -380,25 +425,35 @@ var Status = React.createClass({
   propTypes: {
     found: React.PropTypes.number.isRequired,
     max: React.PropTypes.number.isRequired,
-    message: React.PropTypes.oneOf(['choosetile','findmate','wrong','foundmate','foundall']).isRequired
+    message: React.PropTypes.oneOf([
+      "choosetile",
+      "findmate",
+      "wrong",
+      "foundmate",
+      "foundall"
+    ]).isRequired
   },
   render() {
     var found = this.props.found,
-        max = this.props.max,
-        texts = {
-          choosetile:'Choose a tile!',
-          findmate:'Now try to find the matching tile!',
-          wrong:'Sorry, those didn\'t match!',
-          foundmate:'Yey, they matched!',
-          foundall:'You\'ve found all '+max+' pairs! Well done!'
-        };
-    return <p>({found}/{max})&nbsp;&nbsp;{texts[this.props.message]}</p>;
+      max = this.props.max,
+      texts = {
+        choosetile: "Choose a tile!",
+        findmate: "Now try to find the matching tile!",
+        wrong: "Sorry, those didn't match!",
+        foundmate: "Yey, they matched!",
+        foundall: "You've found all " + max + " pairs! Well done!"
+      };
+    return (
+      <p>
+        ({found}/{max})&nbsp;&nbsp;{texts[this.props.message]}
+      </p>
+    );
   }
 });
 ```
 
 <table>
-  <thead><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></thead>
+  <thead><tr><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></tr></thead>
   <tbody>
     <tr><td>found<br/>max<br/>message</td><td></td><td></td><td></td></tr>
   </tbody>
@@ -412,7 +467,7 @@ Performance-wise it would probably be beneficial to move the `texts` variable ou
 
 ###The state of a tile
 
-In the old version, the `Tile` component made use of three state variables; `flipped`, `correct` and `wrong`. This was really bad design on my part, which also made for needlessly complex code. When a tile is flipped, it is either correct or wrong. If wrong, I'll reset flipped to false after 2 seconds. 
+In the old version, the `Tile` component made use of three state variables; `flipped`, `correct` and `wrong`. This was really bad design on my part, which also made for needlessly complex code. When a tile is flipped, it is either correct or wrong. If wrong, I'll reset flipped to false after 2 seconds.
 
 A much better design is to bake this into a single tile status variable with the possible values of `unturned`, `correct` and `wrong`!
 
@@ -437,7 +492,6 @@ When we render the tiles, each tile is passed its status as a property along wit
 
 As the game progresses, we merely need to update the corresponding indexes in `tilestates` in `Board`, and the faux data binding of React's &quot;rerender everything&quot; approach will take care of the rest!
 
-
 ###More underscore shenanigans
 
 Speaking of updating the `tilestates` array, here's a closer look at the code where that is done:
@@ -445,27 +499,43 @@ Speaking of updating the `tilestates` array, here's a closer look at the code wh
 ```javascript
 // revealing a lone tile
 this.setState({
-  message: 'findmate',
-  tilestates: _.extend(this.state.tilestates,_.object([index],['revealed']))
+  message: "findmate",
+  tilestates: _.extend(this.state.tilestates, _.object([index], ["revealed"]))
 });
 
 // marking a pair as correct
 this.setState({
-  found: this.state.found+1,
-  message: 'foundmate',
-  tilestates: _.extend(this.state.tilestates,_.object([index,otherindex],['correct','correct']))
+  found: this.state.found + 1,
+  message: "foundmate",
+  tilestates: _.extend(
+    this.state.tilestates,
+    _.object([index, otherindex], ["correct", "correct"])
+  )
 });
 
 // marking a pair as wrong
 this.setState({
-  message: 'wrong',
-  tilestates: _.extend(this.state.tilestates,_.object([index,otherindex],['wrong','wrong']))
+  message: "wrong",
+  tilestates: _.extend(
+    this.state.tilestates,
+    _.object([index, otherindex], ["wrong", "wrong"])
+  )
 });
 
 // turning a pair back down
 this.setState({
-  message: this.state.message === 'findmate' ? 'findmate' : this.max === this.state.found ? 'foundall' : 'choosetile',
-  tilestates: matched ? this.state.tilestates : _.extend(this.state.tilestates,_.object([index,otherindex],['unturned','unturned']))
+  message:
+    this.state.message === "findmate"
+      ? "findmate"
+      : this.max === this.state.found
+      ? "foundall"
+      : "choosetile",
+  tilestates: matched
+    ? this.state.tilestates
+    : _.extend(
+        this.state.tilestates,
+        _.object([index, otherindex], ["unturned", "unturned"])
+      )
 });
 ```
 
@@ -474,7 +544,6 @@ The `_.extend` call calculating the new `tilestates` array is succinct to the po
 There's another reason why I didn't make a helper function containing the same functionality in a more readable way; we should never mutate anything in `this.state` except through calls to `this.setState`. And not mutating an array while we're operating on it over several LOC's isn't feasible. That means we'd have to copy the array, mutate the copy, and then finally pass that to `setState`.
 
 Doing it that way would amount to lots of work and lots of LOC's, which I use as an excuse to get away with my arrogant one-liner. I concede that there are probably times when I make this exact argument that I'm in the wrong, but the point remains; wielded with responsibility, the powerful expressiveness of Underscore/Lodash can really help you make the code less bulky.
-
 
 ###Tile click catching attempt #1 - passing back instance
 
@@ -522,11 +591,18 @@ This is needlessly complex, and, as Ian pointed out, an antipattern when React s
 After refactoring the tile status to the `tilestates` array in `Board`, it would be enough if we told `Board` the index of the clicked `Tile`. In this version the rendering of the tiles inside the `Board` render method looked like this:
 
 ```javascript
-{this.props.words.map(
-  function(w,n){
-    return (<Tile clickedTile={this.clickedTile} word={w} status={this.state.tilestates[n]} key={n}/>);
-  }
-)}
+{
+  this.props.words.map(function(w, n) {
+    return (
+      <Tile
+        clickedTile={this.clickedTile}
+        word={w}
+        status={this.state.tilestates[n]}
+        key={n}
+      />
+    );
+  });
+}
 ```
 
 And in `Tile`, the click handler passes the `key` property instead of the instance as in attempt #1.
@@ -627,7 +703,7 @@ Finally, here's what's left of the now pitiful Tile component:
 
 var Tile = React.createClass({
   propTypes: {
-    status: React.PropTypes.string.isRequired, 
+    status: React.PropTypes.string.isRequired,
     word: React.PropTypes.string.isRequired
   },
   render(){
@@ -642,7 +718,7 @@ var Tile = React.createClass({
 ```
 
 <table>
-  <thead><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></thead>
+  <thead><tr><th>Props</th><th>State</th><th>Sub components</th><th>Instance variables</th></tr></thead>
   <tbody>
     <tr><td>word<br/><span style='color:red;text-decoration:line-through;'>clickedTile()</span><br/><span style='color:green;'>**status**</span></td><td><span style='color:red;text-decoration:line-through;'>flipped</span><br/><span style='color:red;text-decoration:line-through;'>wrong</span><br/><span style='color:red;text-decoration:line-through;'>correct</span></td><td></td><td></td></tr>
   </tbody>
