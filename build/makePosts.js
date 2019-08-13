@@ -19,8 +19,12 @@ import Master from '../../../components/master';
 import Link from 'next/link';
 ${post.attributes.css ? "import Head from 'next/head';" : ""}
 
+const data = ${JSON.stringify(post.attributes)};
+
 const ${compName} = () => (
-  <Master title="${post.attributes.title}" summary="${post.attributes.excerpt}">
+  <Master kind="post" data={data} title="${post.attributes.title}" summary="${
+    post.attributes.excerpt
+  }">
     ${
       post.attributes.css
         ? `<Head><link rel="stylesheet" href="../static/posts/${
@@ -32,6 +36,7 @@ const ${compName} = () => (
     <div className="post" data-postid="${post.attributes.id}">
       ${process(data, postId)}
     </div>
+    <hr />
   </Master>
 );
 

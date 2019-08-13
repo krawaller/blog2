@@ -22,6 +22,9 @@ export default class MyApp extends App {
   }
 
   render() {
+    if (typeof window !== "undefined") {
+      window.ga("send", "pageview");
+    }
     const { Component, pageProps } = this.props;
     return (
       <Container>

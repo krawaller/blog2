@@ -1,35 +1,61 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 
-const Master = ({ title, summary, children }) => (
-  <div className="master">
-    <Head>
-      <title>{title}</title>
-      <link rel="stylesheet" href="/static/styles/code.css" />
-      <link rel="stylesheet" href="/static/styles/master.css" />
-      {/* <script
-        type="text/javascript"
-        async
-        src="//krawaller.disqus.com/embed.js"
-      /> */}
-    </Head>
-    <h1>
-      <Link href="/">
-        <a>Krawaller</a>
-      </Link>
-    </h1>
-    <hr />
-    <div className="summary">{summary}</div>
-    <hr />
-    <h2>{title}</h2>
-    <div className="page-content">{children}</div>
-    {/* <hr />
-    <div id="disqus_thread" />
-    <a href="http://disqus.com" className="dsq-brlink">
-      comments powered by <span className="logo-disqus">Disqus</span>
-    </a> */}
-  </div>
-);
+const Master = ({ title, summary, children, kind, data }) => {
+  useEffect(() => {
+    window.ga =
+      window.ga ||
+      function() {
+        (ga.q = ga.q || []).push(arguments);
+      };
+    ga.l = +new Date();
+    ga("create", "UA-11433118-1", "auto");
+  }, []);
+  useEffect(() => {
+    if (kind === "post") {
+      function loadComments() {
+        if (window.DISQUS) {
+          window.DISQUS.reset({
+            reload: true,
+            config: function() {
+              this.page.identifier = data.id;
+              this.page.url = "http://blog.krawaller.se/posts/" + data.url;
+              this.page.title = title;
+              this.language = "en";
+            }
+          });
+        } else {
+          setTimeout(loadComments, 1000);
+        }
+      }
+      loadComments();
+    }
+  }, [kind, data]);
+  useEffect(() => {
+    window.onlocationchange;
+  });
+  return (
+    <div className="master">
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <h1>
+        <Link href="/">
+          <a>Krawaller</a>
+        </Link>
+      </h1>
+      <hr />
+      <div className="summary">{summary}</div>
+      <hr />
+      <h2>{title}</h2>
+      <div className="page-content">{children}</div>
+      <div
+        id="disqus_thread"
+        style={{ display: kind === "post" ? "block" : "none" }}
+      />
+    </div>
+  );
+};
 
 export default Master;
