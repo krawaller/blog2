@@ -20,7 +20,7 @@ const Master = ({ title, summary, children, kind, data }) => {
             reload: true,
             config: function() {
               this.page.identifier = data.id;
-              this.page.url = "http://blog.krawaller.se/posts/" + data.url;
+              this.page.url = "https://blog.krawaller.se/posts/" + data.url;
               this.page.title = title;
               this.language = "en";
             }

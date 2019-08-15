@@ -3,7 +3,7 @@ url: "algebra-explorer-a-symbolic-calculator-web-app"
 id: algebraexplorer
 title: Algebra Explorer - a symbolic calculator web app
 author: david
-tags: [algebra explorer,testing,education]
+tags: [algebra explorer, testing, education]
 date: 2014-12-30
 excerpt: Introducing a symbolic calculator built on the web stack and peeping under the hood
 type: post
@@ -14,7 +14,7 @@ type: post
 For several years now I've tried to combine my programming self with my maths teacher alter ego by working on a symbolic calculator that would show the substeps of the manipulations made, to allow people to more easily understand the intricacies of algebra. Now I'm finally finished, and I am ever so happy to present to you - Algebra Explorer!
 
 <p style='text-align:center;'>
-![substeps](./static/img/alexscreen.png)
+	<img src="./static/img/alexscreen.png">
 </p>
 
 You can find out more by visiting [the homepage](http://www.algebraexplorer.com), but as it is a web app you can also try it out right here by clicking the button below!
@@ -22,7 +22,6 @@ You can find out more by visiting [the homepage](http://www.algebraexplorer.com)
 <p><button class='launchbutton' style='display:block;margin: 0 auto;'>Launch Algebra Explorer</button></p>
 
 This post won't talk too much about the pedagogical side or the app functionality, but instead relate how the app was built.
-
 
 ###Payment model
 
@@ -32,13 +31,13 @@ Time will tell if this model is at all viable, but at this point I'm not too bot
 
 ###Tech stack
 
-As I have been toiling away at this project for years and years and *years* (I remember sketching out the prototype on the whiteboard of the school in Blacklake prison in 2007), the choices regarding building blocks are not what present day David would make. But, here we go:
+As I have been toiling away at this project for years and years and _years_ (I remember sketching out the prototype on the whiteboard of the school in Blacklake prison in 2007), the choices regarding building blocks are not what present day David would make. But, here we go:
 
-*     **CoffeeScript:** Yeah, I know, I'm sorry. When I started (this version of the codebase) CS was all the craze, and I had my seat on the train. But I must say, diving down that rabbit hole definitely made me a stronger JS programmer!
-*     **Backbone:** Maybe not that bad of a fit, as my needs were rather specific and Backbone gave me lots of freedom.
-*     **Vows:** I'll talk some more about the unit testing towards the end of this post.
-*     **Mathjax:** For displaying mathematics in browsers without native support for MathML.
-*     **Cordova:** Initially I used the [phonegap build service](https://build.phonegap.com/), but their repo size limit and other weirdness made me eventually install Cordova locally instead.
+-     **CoffeeScript:** Yeah, I know, I'm sorry. When I started (this version of the codebase) CS was all the craze, and I had my seat on the train. But I must say, diving down that rabbit hole definitely made me a stronger JS programmer!
+-     **Backbone:** Maybe not that bad of a fit, as my needs were rather specific and Backbone gave me lots of freedom.
+-     **Vows:** I'll talk some more about the unit testing towards the end of this post.
+-     **Mathjax:** For displaying mathematics in browsers without native support for MathML.
+-     **Cordova:** Initially I used the [phonegap build service](https://build.phonegap.com/), but their repo size limit and other weirdness made me eventually install Cordova locally instead.
 
 Other than that, I built everything myself. This was more ignorance than pride; for example, had I known more about parsing theory I would have used a library as a foundation for my own instead of doing everything from scratch.
 
@@ -48,8 +47,8 @@ First off I designed my own data format for mathematics. It is very simple; ever
 
 ```json
 {
-	"type": "number",
-	"val": 7
+  "type": "number",
+  "val": 7
 }
 ```
 
@@ -57,29 +56,37 @@ Here is the sum `x+pi/(4^3)`:
 
 ```json
 {
-	"type": "sum",
-	"objs": [{
-		"type": "variable",
-		"val": "x"
-	},{
-		"type": "fraction",
-		"objs": [{
-			"type": "constant",
-			"val": "pi"
-		},{
-			"type":"power",
-			"objs": [{
-				"type":"number",
-				"val":4
-			},{
-				"type":"number",
-				"val":3
-			}]
-		}]
-	}]
+  "type": "sum",
+  "objs": [
+    {
+      "type": "variable",
+      "val": "x"
+    },
+    {
+      "type": "fraction",
+      "objs": [
+        {
+          "type": "constant",
+          "val": "pi"
+        },
+        {
+          "type": "power",
+          "objs": [
+            {
+              "type": "number",
+              "val": 4
+            },
+            {
+              "type": "number",
+              "val": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 ```
-
 
 ###Substeps under the hood
 
@@ -108,7 +115,7 @@ oneExpPowerToBase = # x^1 = x
 
 Note how the `result` when calling `perform` will be `target.objs[0]`. Since the target of the operation is always a power, what is returned is the first child of the power, namely the base. And of course this is what remains if we "remove" the exponent.
 
-Now consider the rule that if a power has an exponent of 0, it is equal to 1 (actually it is not quite that simple since the base cannot be 0 too, but never mind that for now). This is *not* a basic truth, but a consequence of the above rule and several other rules. Here's what this looks like in the app:
+Now consider the rule that if a power has an exponent of 0, it is equal to 1 (actually it is not quite that simple since the base cannot be 0 too, but never mind that for now). This is _not_ a basic truth, but a consequence of the above rule and several other rules. Here's what this looks like in the app:
 
 <p style='text-align:center;'>
 ![substeps](./static/img/alexsubsteps.png)
@@ -161,7 +168,7 @@ zeroExpPowerToOne:
 			dropexp1: "Exponenten 1 tar vi bort."
 			movetodenom: "Den andra potensen flyttar vi ner i nämnaren, vilket gör att exponenten byter tecken, blir 1 och försvinner!"
 			andcollapsefracto1: "Nu har vi ett bråk med identisk täljare och nämnare, vilket vi kollapsar till 1!"
-	en: 
+	en:
 		name: "transform power to 1"
 		explanation: "The exponent tells us how many times we multiply the base with itself. But if we have 0 factors we just get the neutral element of multiplication, namely 1."
 		targets: "a power with exponent 0 and base not equal to 0"
@@ -179,7 +186,6 @@ Note how the `steps` keys correspond to the strings used in the `zeroExpPowerToO
 
 Initially I was worried about keeping such large objects in memory - the one defined in this file, containing all operation descriptions and substep explanations, is over half a megabyte! But as it turned out, this proved to work rather smoothly even on lower end devices.
 
-
 ###Regular expressions ftw
 
 As you can see in the screenshot up top, some terms inside explanations are clickable. Algebra Explorer has an integrated glossary - click the term to navigate to the definition for that term. This is done dynamically by defining a `matcher` for each glossary entry. Here's the definition for the word `extract`:
@@ -196,6 +202,7 @@ extract:
 		en: "When we factorise an expression because we are interested in one of the resulting factors, we say that we extracted that factor."
 		sv: "Om vi faktoriserar ett uttryck för att vi är intresserade av en av de resulterande faktorerna, så säger vi att vi har brytit ut (eller 'extraherat') den faktorn."
 ```
+
 This saved me from manually having to write the links, which would have made authoring the texts a real drag.
 
 At first this didn't work too well - sometimes there was a wording I hadn't anticipated and the word wouldn't be clickable, and other times words would be made clickable when they shouldn't be as they meant something entirely different in that context. This got better over time as I got better at phrasing dexterous but still picky regexes.<br/><br/>
@@ -211,7 +218,7 @@ MAKESAFE:
 
 ###Unit testing with Vows
 
-For unit testing my choice fell on [Vows](http://vowsjs.org/), which turned out to be a very good fit. The main advantage for me was that the test definitions in vows are object literals, which makes it easy to write helper functions (they call them "macros") to clean up your tests. 
+For unit testing my choice fell on [Vows](http://vowsjs.org/), which turned out to be a very good fit. The main advantage for me was that the test definitions in vows are object literals, which makes it easy to write helper functions (they call them "macros") to clean up your tests.
 
 Here is what it can look like, using the `mergeSameBaseFacs` operation as an example:
 
@@ -271,13 +278,13 @@ Combined with the added readability of CoffeeScript, this really makes for some 
 
 ###Wrapping up
 
-When I started, part of my motivation was to show that it was possible to build this kind of thing with JavaScript. That's not a point that needs to be made anymore, and there are already several other CAS implementations built on the web stack. 
+When I started, part of my motivation was to show that it was possible to build this kind of thing with JavaScript. That's not a point that needs to be made anymore, and there are already several other CAS implementations built on the web stack.
 
 Still, I am rather proud of my creation! Sure, it contains many rough edges, the UI isn't that intuitive, and many times the fact that this is a one man show shines through. But for those who get over the initial threshold it seems the app can really help them grokk algebra. We're starting now to roll it out for the maths students in the Swedish prisons, and I hope teachers outside the walls will catch on too. Time will tell.
 
 And also the code is really pretty. :)
 
-Anyhow, if you have an interest then please do give [Algebra Explorer](http://www.algebraexplorer.com) a spin! Any and all feedback much appreciated! 
+Anyhow, if you have an interest then please do give [Algebra Explorer](http://www.algebraexplorer.com) a spin! Any and all feedback much appreciated!
 
 <script type="text/javascript">
   document.querySelector(".launchbutton").addEventListener("click",function(e){

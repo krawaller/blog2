@@ -19,7 +19,8 @@
     "makePosts": "node makePosts",
     "start": "next start",
     "export": "next export && touch out/.nojekyll",
-    "publish": "npm run export && cd out && git init && git add . && git commit -m 'rebuilt' && git remote add origin git@github.com:krawaller/krawaller.github.io.git && git push -f origin master",
+    "publish": "cd out && git init && git add . && git commit -m 'rebuilt' && git remote add origin git@github.com:krawaller/blogtest.git && git push -f origin master",
+    "robot": "rm -rf out && npm run build && npm run export && npm run publish",
     "test": "jest"
   }
 }

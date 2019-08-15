@@ -29,7 +29,7 @@ export default class MyDocument extends Document {
             key="disqus"
             type="text/javascript"
             async
-            src="http://krawaller.disqus.com/embed.js"
+            src="https://krawaller.disqus.com/embed.js"
           />
           <script async src="https://www.google-analytics.com/analytics.js" />
           <script dangerouslySetInnerHTML={{ __html: gaScript }} />
