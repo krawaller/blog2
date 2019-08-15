@@ -4,4 +4,5 @@ next/pages/index.js
 next/pages/posts
 next/pages/tags
 next/static/posts
+next/out
 .next

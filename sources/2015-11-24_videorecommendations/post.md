@@ -11,11 +11,11 @@ type: post
 
 ### Functional programming in JavaScript with MPJ
 
-[Mattias Petter Johansson](https://about.me/mpj), usually going by the handle *mpj*, has a [really excellent tutorial series](https://www.youtube.com/channel/UCO1cgjhGzsSYb1rsB4bFe4Q/videos) going on YouTube. In bite-sized videos he covers various aspects of programming in general and functional programming in particular, not just with code but answering the often-skipped **why**. Spiced up by Mattias' theatrics the videos are every bit as entertaining as they are educational!
+[Mattias Petter Johansson](https://about.me/mpj), usually going by the handle _mpj_, has a [really excellent tutorial series](https://www.youtube.com/channel/UCO1cgjhGzsSYb1rsB4bFe4Q/videos) going on YouTube. In bite-sized videos he covers various aspects of programming in general and functional programming in particular, not just with code but answering the often-skipped **why**. Spiced up by Mattias' theatrics the videos are every bit as entertaining as they are educational!
 
 Here's an episode I found especially interesting where Mattias highlights the sometimes overlooked cost of function extraction:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Bks59AaHe1c" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Bks59AaHe1c" frameBorder="0" allowFullScreen></iframe>
 
 ### CSS3 videos by Webucator
 
@@ -23,7 +23,7 @@ Here's an episode I found especially interesting where Mattias highlights the so
 
 I've especially enjoyed their [CSS3](https://www.youtube.com/playlist?list=PLhP5GzqIk6qsHhcJ-a716YHSk_I9DIC59) line, to which they recently added a video version of our [flexbox tournament bracket post](http://blog.krawaller.se/posts/exploring-a-css3-tournament-bracket/):
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/7J_IkCJKjAs" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7J_IkCJKjAs" frameBorder="0" allowFullScreen></iframe>
 
 ### Redux videos on Egghead.io by Dan Abramov
 
