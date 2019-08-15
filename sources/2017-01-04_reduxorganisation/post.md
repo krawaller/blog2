@@ -4,7 +4,7 @@ id: reduxorganisation
 type: post
 title: "A React-Redux example followup"
 date: 2017-01-06
-tags: [react,redux]
+tags: [react, redux]
 author: david
 excerpt: Following up on our React-Redux example, discussing what logic goes where
 ---
@@ -24,19 +24,19 @@ Even more so when Samuel Bleckley wrote a [comment pointing out a pretty severe 
 
 The [old source code](https://github.com/krawaller/riastart2015) is running in the iframe below (you can also access it directly at [http://blog.krawaller.se/riastart2015/](http://blog.krawaller.se/riastart2015/)).
 
-<iframe src="http://blog.krawaller.se/riastart2015/" style="height:500px;width:100%"></iframe>
+<iframe src="https://blog.krawaller.se/riastart2015/" style="height:500px;width:100%"></iframe>
 
 You're assumed to have read [the old blog post](a-react-redux-example-app/), but here's a whirlwind recap. The app state has two parts to it:
 
-* `heroes` holds persistent information for each hero, such as number of kills total
-* `battlefield` holds the state of the currently ongoing battle
+- `heroes` holds persistent information for each hero, such as number of kills total
+- `battlefield` holds the state of the currently ongoing battle
 
 As usual with Redux, each of these top-level keys has a reducer of its own, thus we have a `heroesReducer` and a `battlefieldReducer`.
 
 You can see this more clearly by peeking at the [old initial state](https://github.com/krawaller/riastart2015/blob/gh-pages/src/initialstate.js) code:
 
 ```javascript
-module.exports = function(){
+module.exports = function() {
   return {
     // "persistent" data on heroes
     heroes: {
@@ -59,7 +59,12 @@ module.exports = function(){
     },
     // data on the current battle
     battlefield: {
-      doing: {batman:C.WAITING,superman:C.WAITING,spiderman:C.WAITING,"he-man":C.WAITING},
+      doing: {
+        batman: C.WAITING,
+        superman: C.WAITING,
+        spiderman: C.WAITING,
+        "he-man": C.WAITING
+      },
       standing: 4,
       log: ["Ready.... fight!"]
     }
@@ -71,14 +76,13 @@ To see the persistent stats for a particular hero, simply click his name:
 
 ![](./static/img/reduxexampleherodetail.gif)
 
-
-### The bug 
+### The bug
 
 The bug that Samuel Bleckley found is the embarrassing fact that kills are recorded even for shots that fail to take out their target. This happens if
 
-* the target is ducking
-* the target was killed by someone else first
-* the shooter got taken out while aiming
+- the target is ducking
+- the target was killed by someone else first
+- the shooter got taken out while aiming
 
 Here you can see it in action - After the 2 second aiming period Batman gets a kill recorded even though Superman is ducking:
 
@@ -137,43 +141,43 @@ But since we branch between a valid kill and a spam message inside `battlefieldR
 And this is our problem. The [`heroesReducer`](https://github.com/krawaller/riastart2015/blob/gh-pages/src/reducers/heroes.js) simply listens for the `KILL_HERO` action to register a kill:
 
 ```javascript
-var newstate = Object.assign({},state);
-switch(action.type){
+var newstate = Object.assign({}, state);
+switch (action.type) {
   case constants.KILL_HERO:
     newstate[action.killer].kills += 1;
     return newstate;
-  default: return state || initialState().heroes;
+  default:
+    return state || initialState().heroes;
 }
 ```
 
-Initially there was no `AIM_AT` and no ducking - when you clicked kill, you instakilled your target. At that point in time, everything worked as expected. Then I added the 2-second aiming period and ducking, essentially *changing the meaning of the `KILL_HERO` action to `MAYBE_KILL`*.
+Initially there was no `AIM_AT` and no ducking - when you clicked kill, you instakilled your target. At that point in time, everything worked as expected. Then I added the 2-second aiming period and ducking, essentially _changing the meaning of the `KILL_HERO` action to `MAYBE_KILL`_.
 
 With the current setup, there isn't really a simple way to solve this! The `heroesReducer` only cares about actual kills, but cannot easily differentiate those since the branching is done inside the `battlefieldReducer`.
-
 
 ### Solving the problem
 
 Here's a fixed version of the app! Note how failed shots won't register as kills here.
 
-<iframe src="http://blog.krawaller.se/reactreduxexamplev2/" style="height:500px;width:100%"></iframe>
+<iframe src="https://blog.krawaller.se/reactreduxexamplev2/" style="height:500px;width:100%"></iframe>
 
 The new source code - which, apart from the bug fix, also has updated dependencies, an ES6 makeover and some reorganisation - is available at [https://github.com/krawaller/reactreduxexamplev2](https://github.com/krawaller/reactreduxexamplev2).
 
 We squashed the bug by updating the [action creator](https://github.com/krawaller/reactreduxexamplev2/blob/gh-pages/src/actions.js#L25-L51), making it host the main branching logic:
 
 ```javascript
-if (state.doing[killer] === C.DEAD){
-  dispatch({type:C.TWITCH_FINGER, who: killer});
+if (state.doing[killer] === C.DEAD) {
+  dispatch({ type: C.TWITCH_FINGER, who: killer });
 } else {
   // the target is ducking
   if (state.doing[victim] === C.DUCKING) {
-    dispatch({type:C.MISS_SHOT, killer, victim});
-  // the target has already been killed
+    dispatch({ type: C.MISS_SHOT, killer, victim });
+    // the target has already been killed
   } else if (state.doing[victim] === C.DEAD) {
-    dispatch({type:C.BLAST_CORPSE, killer, victim});
-  // we kill the target!
+    dispatch({ type: C.BLAST_CORPSE, killer, victim });
+    // we kill the target!
   } else {
-    dispatch({type:C.KILL_HERO,killer,victim});
+    dispatch({ type: C.KILL_HERO, killer, victim });
   }
 }
 ```
@@ -213,7 +217,6 @@ case C.KILL_HERO:
 ```
 
 Now `KILL_HERO` actually means what it says again.
-
 
 ### Discussing our options
 
@@ -294,11 +297,8 @@ It lives in a gargantuan object of "modes". Each mode is a specific point in the
 
 In other words, the business logic is spearated not just from the views (React), but also from the data layer (Redux)! In a bout of nostalgia I could switch out Redux for Reflux, and I wouldn't have to touch my business code.
 
-
 ### Wrapping up
 
-Now, I'm not saying that option 4 rulez all, and that you should go forth to separate the business logic from Redux like this. But there are times when it has merits, and I think there is value just in realising that there *are* 4 options and not just 3!
+Now, I'm not saying that option 4 rulez all, and that you should go forth to separate the business logic from Redux like this. But there are times when it has merits, and I think there is value just in realising that there _are_ 4 options and not just 3!
 
 And, again - don't be afraid of fat action creators!
-
-

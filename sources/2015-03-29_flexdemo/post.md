@@ -15,10 +15,9 @@ Like everyone else I've been playing around with the newly released <a href="htt
 
 In order to alleviate that I built an interactive demo app where you can change the related props for the container and the children, and see first hand what the resulting layout looks like. This helped me a lot, so I share it here hoping it can help you too! You can try it out below, and it is also published <a href="">here</a>.
 
-<iframe src="http://blog.krawaller.se/flexboxdemo/" style="height:440px;width:100%"></iframe>
+<iframe src="https://blog.krawaller.se/flexboxdemo/" style="height:440px;width:100%"></iframe>
 
 Putting the demo app together was a lot of fun! I used React (of course), and it turned out to be a great fit for this particular project. Throughout the rest of this post I'll walk through the <a href="">source code</a>.
-
 
 ### Components
 
@@ -27,7 +26,6 @@ The app is made up by four components:
 ![components](./static/img/flexboxcomp.jpg)
 
 The top level `Demo` component uses `Child` to display the flex children. It also renders the two `Form`s, who in turn uses `Dropdown` for each individual control.
-
 
 ### Demo
 
@@ -71,9 +69,9 @@ getInitialState: function(){
 
 As you can see we have three state variables:
 
-*    `parent` contains the currently selected container options. To begin with we select the first option from each array of property values.
-*    `children` contains an array with an option object for each child. Again we use the first option as default except for `flexGrow` and `order`. Each child is also given a unique id.
-*    `selectedId` contains the position of the currently selected child.
+- `parent` contains the currently selected container options. To begin with we select the first option from each array of property values.
+- `children` contains an array with an option object for each child. Again we use the first option as default except for `flexGrow` and `order`. Each child is also given a unique id.
+- `selectedId` contains the position of the currently selected child.
 
 The app implements a bare-bones cursor, similar to [React cursor](https://github.com/dustingetz/react-cursor) or [Cortex](https://github.com/mquan/cortex). The child components will get callbacks that when called update `Demo`'s state. This is implemented through the `setValues` method:
 
@@ -123,17 +121,30 @@ The [`Child` component](https://github.com/krawaller/flexboxdemo/blob/gh-pages/s
 ```javascript
 var Child = React.createClass({
   propTypes: {
-    def: ptypes.objectOf(ptypes.oneOfType([ptypes.string,ptypes.number])).isRequired,
+    def: ptypes.objectOf(ptypes.oneOfType([ptypes.string, ptypes.number]))
+      .isRequired,
     selected: ptypes.bool,
     callback: ptypes.func.isRequired
   },
-  render: function(){
+  render: function() {
     var p = this.props;
     return (
-      <div onClick={_.ary(p.callback,0)} style={p.def} className={"child"+(p.selected ? " selectedchild":"")}>
-        {_.map(p.def,function(val,key){
-          return <div key={key}>{key}: {val}</div>;
-        },this)}
+      <div
+        onClick={_.ary(p.callback, 0)}
+        style={p.def}
+        className={"child" + (p.selected ? " selectedchild" : "")}
+      >
+        {_.map(
+          p.def,
+          function(val, key) {
+            return (
+              <div key={key}>
+                {key}: {val}
+              </div>
+            );
+          },
+          this
+        )}
       </div>
     );
   }
@@ -149,24 +160,35 @@ The [`Form` component](https://github.com/krawaller/flexboxdemo/blob/gh-pages/sr
 ```javascript
 var Form = React.createClass({
   propTypes: {
-    options: ptypes.objectOf(ptypes.arrayOf(ptypes.oneOfType([ptypes.string,ptypes.number]))).isRequired,
-    values: ptypes.objectOf(ptypes.oneOfType([ptypes.string,ptypes.number])).isRequired,
+    options: ptypes.objectOf(
+      ptypes.arrayOf(ptypes.oneOfType([ptypes.string, ptypes.number]))
+    ).isRequired,
+    values: ptypes.objectOf(ptypes.oneOfType([ptypes.string, ptypes.number]))
+      .isRequired,
     title: ptypes.string.isRequired,
     callback: ptypes.func.isRequired
   },
-  render: function(){
+  render: function() {
     var p = this.props;
     return (
-      <div className='form'>
-        <strong key='title'>{p.title}</strong>
-        {_.mapValues(p.options,function(opts,name){
-          return (
-            <div key={name} className='formrow'>
-              <span>{name}: </span>
-              <Dropdown options={opts} current={p.values[name]} callback={p.callback.bind(this,name)} />
-            </div>
-          );
-        },this)}
+      <div className="form">
+        <strong key="title">{p.title}</strong>
+        {_.mapValues(
+          p.options,
+          function(opts, name) {
+            return (
+              <div key={name} className="formrow">
+                <span>{name}: </span>
+                <Dropdown
+                  options={opts}
+                  current={p.values[name]}
+                  callback={p.callback.bind(this, name)}
+                />
+              </div>
+            );
+          },
+          this
+        )}
       </div>
     );
   }
@@ -180,34 +202,40 @@ Note how it passes `callback` along to each `Dropdown` but curries it further wi
 Finally, the `Dropdown` component renders a `select` control with the given values.
 
 ```javascript
-
 var Dropdown = React.createClass({
   propTypes: {
-    options: ptypes.arrayOf(ptypes.oneOfType([ptypes.string,ptypes.number])).isRequired,
-    current: ptypes.oneOfType([ptypes.string,ptypes.number]).isRequired,
+    options: ptypes.arrayOf(ptypes.oneOfType([ptypes.string, ptypes.number]))
+      .isRequired,
+    current: ptypes.oneOfType([ptypes.string, ptypes.number]).isRequired,
     callback: ptypes.func.isRequired
   },
-  changeOption: function(e){
+  changeOption: function(e) {
     this.props.callback(this.refs.sel.getDOMNode().value);
   },
-  render: function(){
+  render: function() {
     return (
-      <select ref="sel" onChange={this.changeOption} defaultValue={''+this.props.current} >
-        {this.props.options.map(function(o){
-          return <option key={o} value={o}>{o}</option>;
+      <select
+        ref="sel"
+        onChange={this.changeOption}
+        defaultValue={"" + this.props.current}
+      >
+        {this.props.options.map(function(o) {
+          return (
+            <option key={o} value={o}>
+              {o}
+            </option>
+          );
         })}
       </select>
     );
   }
 });
-
 ```
 
-Calling `callback` with the updated value will result in a curried call to `setValue`. 
+Calling `callback` with the updated value will result in a curried call to `setValue`.
 
 ### Wrapping up
 
 Since the demo app by its very nature needed to cascade data changes, it turned out to be a great fit for React. Then again, most apps are!
 
 And although flexbox can seem intimidating at first, the model at its heart is really rather simple! Yet hugely powerful, and I think it was a stroke of genious to give it the task of layout in React Native. I've done my fare share of Titanium development, but feel that using flexbox seems superior in every way.
-

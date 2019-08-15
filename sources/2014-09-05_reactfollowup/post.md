@@ -13,7 +13,7 @@ type: post
 
 A week ago I wrote a [case study on a small React experiment](../a-react-js-case-study), a memory game I whipped up to learn the ins and outs of React. Here's the game in an iframe again (here's a [link](http://blog.krawaller.se/reactexperiment/) if you want it in a separate tab), to save you from hopping back to refresh your memory (...). The repo, as before, can be found [here](https://github.com/krawaller/reactexperiment/).
 
-<iframe src='http://blog.krawaller.se/reactexperiment/' style="height:240px;width:100%"></iframe>
+<iframe src='https://blog.krawaller.se/reactexperiment/' style="height:240px;width:100%"></iframe>
 
 Since this was my first foray into React the code was, well, less than perfect. But I was fortunate to receive lots of excellent feedback in the comments and [on Hacker News](https://news.ycombinator.com/item?id=8247223), foremost of which was Facebook's [Ian Obermiller](http://ianobermiller.com/) who took the time to do a [fork of the repo](https://github.com/ianobermiller/reactexperiment/) with [in-depth comments to each commit](https://github.com/ianobermiller/reactexperiment/commits/).
 

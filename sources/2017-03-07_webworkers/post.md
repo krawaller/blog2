@@ -9,21 +9,20 @@ author: david
 excerpt: Presenting a tool to create an asynchronous webworker version of a library
 ---
 
-
 ### The premise
 
 Imagine you have a library, consisting of an **object with a bunch of methods**. Some or all of those are heavy, and will lock up the thread for a while.
 
 ```javascript
 var myHeavyLib = {
-  aHeavyMethod: function(arg1,arg2){
+  aHeavyMethod: function(arg1, arg2) {
     // extremely heavy computing left out here
     return arg1 + arg2;
   },
-  anotherHeavyMethod: function(arg1,arg2){
+  anotherHeavyMethod: function(arg1, arg2) {
     // extremely heavy computing left out here
     return arg1 + arg2;
-  },
+  }
   // etc
 };
 ```
@@ -31,7 +30,6 @@ var myHeavyLib = {
 If we're using this library in a web app, this won't be a nice user experience. We should fix that by **delegating the heavy lifting to a Web worker**.
 
 This situation happened to me very recently, and instead of just webworkerifying my library, I generalised prematurely and made a **tool to webworkerify any library**!
-
 
 ### Meet WorkerWrapper
 
@@ -43,14 +41,14 @@ I made a command line tool I call WorkerWrapper. Feed it a library...
 
 ```javascript
 var asyncVersion = {
-  aHeavyMethod: function(arg1,arg2){
+  aHeavyMethod: function(arg1, arg2) {
     // wrapping magic left out here
     return promise;
   },
-  anotherHeavyMethod: function(arg1,arg2){
+  anotherHeavyMethod: function(arg1, arg2) {
     // wrapping magic left out here
     return promise;
-  },
+  }
   // etc
 };
 ```
@@ -91,7 +89,6 @@ module.exports = function(pathToWorkerFile, numberOfWorkers){
 
 You call this function with a relative path to where you've placed the worker file, as well as the number of parallel webworkers you want spun up.
 
-
 ### See it in action
 
 In the live app below I've wrapped this silly library:
@@ -109,12 +106,11 @@ var heavyLib = {
 }
 ```
 
-On my machine the method takes around 2 seconds. Experiment with hitting the single-worker and multi-worker versions multiple times in quick succession, and you'll see the benefits of parallel workers! 
+On my machine the method takes around 2 seconds. Experiment with hitting the single-worker and multi-worker versions multiple times in quick succession, and you'll see the benefits of parallel workers!
 
-<iframe src="http://blog.krawaller.se/workerdemo/" style="height:500px;width:100%"></iframe>
+<iframe src="https://blog.krawaller.se/workerdemo/" style="height:500px;width:100%"></iframe>
 
 You can run the demo in a standalone tab [here](http://blog.krawaller.se/workerdemo/), and the demo source code is [here](https://github.com/krawaller/workerdemo).
-
 
 ### Under the hood of the wrapper
 
