@@ -8,7 +8,7 @@ const makeTags = require("./makeTags");
 const makeIndex = require("./makeIndex");
 
 const dir = path.join(__dirname, "../sources");
-const outputRoot = path.join(__dirname, "../next");
+const outputRoot = path.join(__dirname, "../");
 
 fs.removeSync(path.join(outputRoot, "pages/posts"));
 fs.removeSync(path.join(outputRoot, "pages/tags"));
