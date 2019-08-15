@@ -20,7 +20,7 @@
     "start": "next start",
     "export": "next export && touch out/.nojekyll",
     "publish": "cd out && git init && git add . && git commit -m 'rebuilt' && git remote add origin git@github.com:krawaller/blogtest.git && git push -f origin master",
-    "robot": "rm -rf out && npm run build && npm run export && npm run publish",
+    "robot": "npm run makePosts && rm -rf out && npm run build && npm run export && npm run publish",
     "test": "jest"
   }
 }

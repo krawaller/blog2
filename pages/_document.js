@@ -24,19 +24,22 @@ export default class MyDocument extends Document {
             href="/static/styles/nprogress.css"
           />
           <link rel="stylesheet" href="/static/styles/code.css" />
-          <link rel="stylesheet" href="/static/styles/master.css" />
+          <link rel="stylesheet" href="/static/styles/site.css" />
+          <script async src="https://www.google-analytics.com/analytics.js" />
+          <script dangerouslySetInnerHTML={{ __html: gaScript }} />
+        </Head>
+        <body>
+          <div className="site">
+            <Main />
+            <NextScript />
+            <div id="disqus_thread" style={{ display: "none" }} />
+          </div>
           <script
             key="disqus"
             type="text/javascript"
             async
             src="https://krawaller.disqus.com/embed.js"
           />
-          <script async src="https://www.google-analytics.com/analytics.js" />
-          <script dangerouslySetInnerHTML={{ __html: gaScript }} />
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
         </body>
       </html>
     );

@@ -16,6 +16,9 @@ const Master = ({ title, summary, children, kind, data }) => {
     if (kind === "post") {
       function loadComments() {
         if (window.DISQUS) {
+          document
+            .getElementById("disqus_thread")
+            .setAttribute("style", "display: block;");
           window.DISQUS.reset({
             reload: true,
             config: function() {
@@ -31,6 +34,10 @@ const Master = ({ title, summary, children, kind, data }) => {
       }
       loadComments();
     }
+    return () =>
+      document
+        .getElementById("disqus_thread")
+        .setAttribute("style", "display: none;");
   }, [kind, data]);
   useEffect(() => {
     window.onlocationchange;
@@ -50,10 +57,6 @@ const Master = ({ title, summary, children, kind, data }) => {
       <hr />
       <h2>{title}</h2>
       <div className="page-content">{children}</div>
-      <div
-        id="disqus_thread"
-        style={{ display: kind === "post" ? "block" : "none" }}
-      />
     </div>
   );
 };
