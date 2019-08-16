@@ -2,10 +2,6 @@ import React, { useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 
-const headline = "krawaller"
-  .split("")
-  .map((letter, n) => <span key={n}>{letter}</span>);
-
 const Master = ({ title, summary, children, kind, data }) => {
   useEffect(() => {
     window.ga =
@@ -51,11 +47,6 @@ const Master = ({ title, summary, children, kind, data }) => {
       <Head>
         <title>{title}</title>
       </Head>
-      <h1>
-        <Link href="/">
-          <a>{headline}</a>
-        </Link>
-      </h1>
       <hr />
       <div className="summary">{summary}</div>
       <hr />
