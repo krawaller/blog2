@@ -6,6 +6,7 @@ const reader = require("./reader");
 const makePosts = require("./makePosts");
 const makeTags = require("./makeTags");
 const makeIndex = require("./makeIndex");
+const makeRss = require("./makeRss");
 
 const dir = path.join(__dirname, "../sources");
 const outputRoot = path.join(__dirname, "../");
@@ -20,3 +21,4 @@ makeIndex(data, outputRoot);
 copyStatic(data, outputRoot);
 makePosts(data, outputRoot);
 makeTags(data, outputRoot);
+makeRss(data, outputRoot);

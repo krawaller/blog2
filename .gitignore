@@ -5,4 +5,5 @@ pages/posts
 pages/tags
 static/posts
 out
+rss.xml
 .next
