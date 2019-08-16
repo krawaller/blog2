@@ -8,6 +8,15 @@
   max-width: 100%;
 }
 
+h1 a {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  color: black;
+  font-weight: 100;
+  font-family: "Lexend Zetta", sans-serif;
+}
+
 .page-content table,
 .page-content table th,
 .page-content table td {

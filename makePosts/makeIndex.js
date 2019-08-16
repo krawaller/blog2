@@ -13,7 +13,7 @@ import Master from '../components/master';
 import Link from 'next/link';
 
 const BlogIndex = () => (
-  <Master kind="index" title="All posts on this blog" summary="awesome web blog">
+  <Master kind="index" title="All posts on this blog" summary="JavaScript geekery">
     <div className="index">
       ${list}
     </div>

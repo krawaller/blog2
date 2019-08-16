@@ -25,6 +25,10 @@ export default class MyDocument extends Document {
           />
           <link rel="stylesheet" href="/static/styles/code.css" />
           <link rel="stylesheet" href="/static/styles/site.css" />
+          <link
+            href="https://fonts.googleapis.com/css?family=Lexend+Zetta&amp;display=swap"
+            rel="stylesheet"
+          />
           <script async src="https://www.google-analytics.com/analytics.js" />
           <script dangerouslySetInnerHTML={{ __html: gaScript }} />
         </Head>
