@@ -1,22 +1,22 @@
 body {
-  background-color: black;
+  background-color: white;
   font-family: "Open sans", sans-serif;
 }
 
-body .site iframe[src^="."] {
+/* body .site iframe[src^="."] {
   background-color: white;
   color: black;
-}
+} */
 
 .site {
   max-width: 800px;
   margin: 0 auto;
   margin-bottom: 6em;
-  color: white;
+  /* color: white; */
 }
 
 .site a {
-  color: #aaa;
+  color: #777;
   text-decoration: none;
 }
 
@@ -32,7 +32,7 @@ body .site iframe[src^="."] {
 .page-content table,
 .page-content table th,
 .page-content table td {
-  border: 1px solid #666;
+  border: 1px solid #555;
   color: black;
   padding: 4px;
   min-width: 70px;
