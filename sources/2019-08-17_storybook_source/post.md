@@ -4,7 +4,7 @@ id: storybooksource
 type: post
 title: "Implementing a source code view in Storybook"
 date: 2019-08-17
-tags: [storybook, react]
+tags: [storybook, react, case study]
 author: david
 excerpt: Exploring how to add a source code viewer to a Storybook setup
 ---

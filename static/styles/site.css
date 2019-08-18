@@ -1,17 +1,34 @@
+body {
+  background-color: black;
+  font-family: "Open sans", sans-serif;
+}
+
 .site {
   max-width: 800px;
   margin: 0 auto;
   margin-bottom: 6em;
+  color: white;
+}
+
+.site a {
+  color: #aaa;
+  text-decoration: none;
+}
+
+.site a:hover {
+  text-decoration: underline;
 }
 
 .site img {
   max-width: 100%;
+  background-color: white;
 }
 
 .page-content table,
 .page-content table th,
 .page-content table td {
   border: 1px solid #666;
+  color: black;
   padding: 4px;
   min-width: 70px;
 }
