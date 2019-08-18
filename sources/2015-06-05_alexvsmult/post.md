@@ -27,7 +27,7 @@ However, I believe an even bigger reason to be the old truth about tool complexi
 
 ###The Multiplication Table app
 
-Recently, on a whim, I made [simple web app](http://blog.krawaller.se/multhelp/) to help my students practice the multiplication table.
+Recently, on a whim, I made [simple web app](https://blog.krawaller.se/multhelp/) to help my students practice the multiplication table.
 
 ![Multiplication table practice](./static/img/mult.png)
 

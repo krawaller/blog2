@@ -12,7 +12,7 @@ draft: false
 
 Today I spoke at the [Devsum](devsum.se) conference about the [CycleJS](http://cycle.js.org) library, with an [RxJS](http://) prelude. As a JS and frontend evangelist I was a bit wary to come to a .NET conference, but it turned out they had lots of great web content!
 
-Below you can peruse the slides to the talk. You can also view them standalone [here](http://blog.krawaller.se/cycleslides).
+Below you can peruse the slides to the talk. You can also view them standalone [here](https://blog.krawaller.se/cycleslides).
 
 No guarantees as to how much sense they make without me yapping along, but here are two pointers:
 

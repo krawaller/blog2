@@ -15,7 +15,7 @@ This post presents an example app demonstrating how to can use Firebase on a Rea
 
 <iframe src="https://blog.krawaller.se/reduxfirebasedemo/" style="height:600px;width:100%"></iframe>
 
-You'll find the code repo [here](https://github.com/krawaller/reduxfirebasedemo), and the app is published [here](http://blog.krawaller.se/reduxfirebasedemo/#/?_k=98yl14).
+You'll find the code repo [here](https://github.com/krawaller/reduxfirebasedemo), and the app is published [here](https://blog.krawaller.se/reduxfirebasedemo/#/?_k=98yl14).
 
 The app was built as a demo for the [RIA development course](https://coursepress.lnu.se/kurs/ria-utveckling-med-javascript/) I'm running at [Linnaeus university](http://lnu.se).
 

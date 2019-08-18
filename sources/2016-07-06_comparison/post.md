@@ -273,7 +273,7 @@ function SubmissionMain(sources){
 const Submission = withComponent(SubmissionMain,Confirm,'disabled$')
 ```
 
-The `withComponent` composition helper is the one introduced in [this post](http://blog.krawaller.se/posts/exploring-composition-in-cyclejs/). The purpose is to help solve the circular dependencies between parent and child sinks and sources, by making child sinks appear in parent sources, and selected parent sources in child sinks (in our case `disabled$`).
+The `withComponent` composition helper is the one introduced in [this post](https://blog.krawaller.se/posts/exploring-composition-in-cyclejs/). The purpose is to help solve the circular dependencies between parent and child sinks and sources, by making child sinks appear in parent sources, and selected parent sources in child sinks (in our case `disabled$`).
 
 The `intent` function picks up two different actions - a local `INPUT` action when the user types in the field, and a `SUBMIT` action bubbling up from the child.
 

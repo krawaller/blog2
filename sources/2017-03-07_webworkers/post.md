@@ -110,7 +110,7 @@ On my machine the method takes around 2 seconds. Experiment with hitting the sin
 
 <iframe src="https://blog.krawaller.se/workerdemo/" style="height:500px;width:100%"></iframe>
 
-You can run the demo in a standalone tab [here](http://blog.krawaller.se/workerdemo/), and the demo source code is [here](https://github.com/krawaller/workerdemo).
+You can run the demo in a standalone tab [here](https://blog.krawaller.se/workerdemo/), and the demo source code is [here](https://github.com/krawaller/workerdemo).
 
 ### Under the hood of the wrapper
 

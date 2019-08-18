@@ -118,7 +118,7 @@ Note how the `result` when calling `perform` will be `target.objs[0]`. Since the
 Now consider the rule that if a power has an exponent of 0, it is equal to 1 (actually it is not quite that simple since the base cannot be 0 too, but never mind that for now). This is _not_ a basic truth, but a consequence of the above rule and several other rules. Here's what this looks like in the app:
 
 <p style='text-align:center;'>
-![substeps](./static/img/alexsubsteps.png)
+<img src="./static/img/alexsubsteps.png" />
 </p>
 
 And here is the source code for this operation, where you can see it explicitly calling each substep:

@@ -140,7 +140,7 @@ Things become somewhat cleaner if we use `context` to handle dependencies instea
 
 ### Further comparisons
 
-For more small scoped comparisons looking at single aspects of frameworks, take a sneak peek at our WIP [JavaScript framework comparison site](http://blog.krawaller.se/jscomp). Sort of TodoMVC, only on a much smaller and hopefully more approachable scale.
+For more small scoped comparisons looking at single aspects of frameworks, take a sneak peek at our WIP [JavaScript framework comparison site](https://blog.krawaller.se/jscomp). Sort of TodoMVC, only on a much smaller and hopefully more approachable scale.
 
 ### Wrapping up
 

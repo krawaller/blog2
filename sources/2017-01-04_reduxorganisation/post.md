@@ -13,7 +13,7 @@ excerpt: Following up on our React-Redux example, discussing what logic goes whe
 
 In October 2015 we posted [A React-Redux example app](../a-react-redux-example-app/), still one of the most-read posts on this blog. Which, as is always the case when old code is scrutinized, feels increasingly embarrassing.
 
-Even more so when Samuel Bleckley wrote a [comment pointing out a pretty severe bug](http://blog.krawaller.se/posts/a-react-redux-example-app/#comment-3035129301) in the example app! This blog post explains the bug and solves it, giving us a good excuse to discuss where to put logic in a Redux app:
+Even more so when Samuel Bleckley wrote a [comment pointing out a pretty severe bug](https://blog.krawaller.se/posts/a-react-redux-example-app/#comment-3035129301) in the example app! This blog post explains the bug and solves it, giving us a good excuse to discuss where to put logic in a Redux app:
 
 1. In the view?
 2. In the action creator?
@@ -22,7 +22,7 @@ Even more so when Samuel Bleckley wrote a [comment pointing out a pretty severe 
 
 ### Reacquainting ourselves with the example
 
-The [old source code](https://github.com/krawaller/riastart2015) is running in the iframe below (you can also access it directly at [http://blog.krawaller.se/riastart2015/](http://blog.krawaller.se/riastart2015/)).
+The [old source code](https://github.com/krawaller/riastart2015) is running in the iframe below (you can also access it directly at [https://blog.krawaller.se/riastart2015/](https://blog.krawaller.se/riastart2015/)).
 
 <iframe src="https://blog.krawaller.se/riastart2015/" style="height:500px;width:100%"></iframe>
 

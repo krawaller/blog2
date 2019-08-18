@@ -19,7 +19,7 @@ Instead of the venerable ToDo, the app is a tiny "game" where superheroes battle
 
 <iframe src="https://blog.krawaller.se/riastart2015/" style="height:500px;width:100%"></iframe>
 
-The url for the app is [http://blog.krawaller.se/riastart2015/](http://blog.krawaller.se/riastart2015/), and the source code is at [https://github.com/krawaller/riastart2015](https://github.com/krawaller/riastart2015).
+The url for the app is [https://blog.krawaller.se/riastart2015/](https://blog.krawaller.se/riastart2015/), and the source code is at [https://github.com/krawaller/riastart2015](https://github.com/krawaller/riastart2015).
 
 Kick the tires for a bit so you get a feel for what's going on, then read on to see how it is all put together!
 

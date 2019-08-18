@@ -21,7 +21,7 @@ Here's an episode I found especially interesting where Mattias highlights the so
 
 [Webucator](https://www.webucator.com) is a company selling [in-person training](https://www.webucator.com/webdesign/css3.cfm), but they also have lots of instructional videos freely available on their [YouTube channel](https://www.youtube.com/user/WebucatorInc/videos) covering [a bunch of different topics](https://www.youtube.com/user/WebucatorInc/playlists).
 
-I've especially enjoyed their [CSS3](https://www.youtube.com/playlist?list=PLhP5GzqIk6qsHhcJ-a716YHSk_I9DIC59) line, to which they recently added a video version of our [flexbox tournament bracket post](http://blog.krawaller.se/posts/exploring-a-css3-tournament-bracket/):
+I've especially enjoyed their [CSS3](https://www.youtube.com/playlist?list=PLhP5GzqIk6qsHhcJ-a716YHSk_I9DIC59) line, to which they recently added a video version of our [flexbox tournament bracket post](https://blog.krawaller.se/posts/exploring-a-css3-tournament-bracket/):
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/7J_IkCJKjAs" frameBorder="0" allowFullScreen></iframe>
 

@@ -14,7 +14,7 @@ For the last couple of weeks I've been enjoying the [O'Reilly early release](htt
 
 ![Developing a ReactJS Edge](./static/img/reactedge.jpg)
 
-Opening the book I had rather low expectations - a previous effort in the same series [left me wanting](http://blog.krawaller.se/posts/book-review-developing-a-backbone-js-edge/), and also I arrogantly thought myself to have ascended well above the knowledge generally provided by entry-level books like this. Turns out I was wrong on both accounts!
+Opening the book I had rather low expectations - a previous effort in the same series [left me wanting](https://blog.krawaller.se/posts/book-review-developing-a-backbone-js-edge/), and also I arrogantly thought myself to have ascended well above the knowledge generally provided by entry-level books like this. Turns out I was wrong on both accounts!
 
 Although the book is still in early release and as such isn't finished (nor is the [accompanied example app](https://github.com/rtfeldman/bleeding-edge-sample-app)), I still wanted to share some thoughts on it as I'm already seriously impressed.
 
