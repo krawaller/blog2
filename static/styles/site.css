@@ -3,28 +3,28 @@ body {
   font-family: "Open sans", sans-serif;
 }
 
-/* body .site iframe[src^="."] {
+/* body .master iframe[src^="."] {
   background-color: white;
   color: black;
 } */
 
-.site {
+.master {
   max-width: 800px;
   margin: 0 auto;
   margin-bottom: 6em;
   /* color: white; */
 }
 
-.site a {
+.master a {
   color: #777;
   text-decoration: none;
 }
 
-.site a:hover {
+.master a:hover {
   text-decoration: underline;
 }
 
-.site img {
+.master img {
   max-width: 100%;
   background-color: white;
 }

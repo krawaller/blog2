@@ -1,5 +1,4 @@
 import Document, { Head, Main, NextScript } from "next/document";
-import { Headline } from "../components/headline";
 
 const gaScript = `
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -38,12 +37,8 @@ export default class MyDocument extends Document {
           <script dangerouslySetInnerHTML={{ __html: gaScript }} />
         </Head>
         <body>
-          <div className="site">
-            <Headline />
-            <Main />
-            <NextScript />
-            <div id="disqus_thread" style={{ display: "none" }} />
-          </div>
+          <Main />
+          <NextScript />
           <script
             key="disqus"
             type="text/javascript"

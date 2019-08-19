@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
 import Link from "next/link";
 
-export const Headline = props => (
+export const Summary = props => (
   <Fragment>
     <hr />
-    <div className="summary">{summary}</div>
+    <div className="summary">{props.summary}</div>
     <hr />
   </Fragment>
 );

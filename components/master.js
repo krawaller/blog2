@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 
+import { Logo } from "./logo";
+import { Summary } from "./summary";
+
 const Master = ({ title, summary, children, kind, data }) => {
   useEffect(() => {
     window.ga =
@@ -47,11 +50,11 @@ const Master = ({ title, summary, children, kind, data }) => {
       <Head>
         <title>{title}</title>
       </Head>
-      <hr />
-      <div className="summary">{summary}</div>
-      <hr />
+      <Logo />
+      <Summary summary={summary} />
       <h2>{title}</h2>
       <div className="page-content">{children}</div>
+      <div id="disqus_thread" style={{ display: "none" }} />
     </div>
   );
 };

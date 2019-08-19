@@ -14,7 +14,7 @@ const style = {
   // fontFamily: '"Lexend Zetta", sans-serif'
 };
 
-export const Headline = () => (
+export const Logo = () => (
   <h1>
     <Link href="/">
       <a style={style}>{headline}</a>
