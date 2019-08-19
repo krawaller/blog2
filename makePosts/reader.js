@@ -22,6 +22,21 @@ function readSource(dir) {
         (attributes.date.getMonth() + 1).toString().padStart(2, "0") +
         "-" +
         attributes.date.toString().slice(8, 10);
+      attributes.headlines = (("\n" + body).match(/\n#{1,} *.*?\n/g) || []).map(
+        str => {
+          const match = str.match(/\n(#*) *(.*?)\n/);
+          return {
+            level: match[1].length,
+            text: match[2],
+            id: match[2]
+              .toLowerCase()
+              .replace(/ /g, "_")
+              .replace(/\W/g, "")
+              .replace(/_/g, "-")
+              .replace(/-{2,}/g, "-")
+          };
+        }
+      );
       return { attributes, body };
     });
   const authors = postList.reduce(

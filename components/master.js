@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Logo } from "./logo";
 import { Summary } from "./summary";
 
-const Master = ({ title, summary, children, kind, data }) => {
+const Master = ({ title, summary, children, kind, data, tags, headlines }) => {
   useEffect(() => {
     window.ga =
       window.ga ||
@@ -53,6 +53,19 @@ const Master = ({ title, summary, children, kind, data }) => {
       <Logo />
       <Summary summary={summary} />
       <h2>{title}</h2>
+      {tags && (
+        <p className="taglist">
+          Tags:{" "}
+          {tags.map(tagId => (
+            <Link
+              key={tagId}
+              href={`/tags/${tagId.toLowerCase().replace(/ /g, "_")}`}
+            >
+              <a>{tagId}</a>
+            </Link>
+          ))}
+        </p>
+      )}
       <div className="page-content">{children}</div>
       <div id="disqus_thread" style={{ display: "none" }} />
     </div>

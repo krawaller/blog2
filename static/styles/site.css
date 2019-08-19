@@ -29,6 +29,10 @@ body {
   background-color: white;
 }
 
+.taglist a {
+  margin-right: 10px;
+}
+
 .page-content table,
 .page-content table th,
 .page-content table td {
