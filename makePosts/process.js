@@ -39,10 +39,7 @@ function process(data, postId) {
 
   res = "\n" + res;
   res = res.replace(/\n([#]+)([^ #])(.+)\n/g, "\n$1 $2$3\n");
-  res = res.replace(
-    /\.\/static\//g,
-    "../static/posts/" + post.attributes.url + "/"
-  );
+  res = res.replace(/__STATIC__/g, `/static/posts/${post.attributes.url}`);
   res = res.replace(/ class='([^']*)'/g, ' className="$1"');
   res = res.replace(/ style='([^']*)'/g, ' style="$1"');
 

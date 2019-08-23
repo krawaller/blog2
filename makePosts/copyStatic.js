@@ -6,7 +6,7 @@ function copyStatic(data, outputRoot) {
     const post = data.posts[postId];
     if (post.attributes.hasStaticContent) {
       console.log("Copying static content for post", postId);
-      const source = path.join(post.attributes.folder, "static");
+      const source = path.join(post.attributes.folder, "__STATIC__");
       const target = path.join(
         outputRoot,
         "static",

@@ -13,7 +13,7 @@ function readSource(dir) {
       const { attributes, body } = fm(postFile);
       attributes.folder = path.join(dir, fname);
       attributes.hasStaticContent = fs.existsSync(
-        path.join(dir, fname, "static")
+        path.join(dir, fname, "__STATIC__")
       );
       attributes.excerpt = attributes.excerpt.replace(/"/g, "&quot;");
       attributes.date =
