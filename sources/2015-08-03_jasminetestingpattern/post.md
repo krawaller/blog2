@@ -13,7 +13,7 @@ type: post
 
 This post assumes familiarity with [Jasmine](http://jasmine.github.io/) in particular and TDD with JavaScript in general. If you need a primer on the latter you can do no better than [Test-Driven JavaScript Development](http://tddjs.com/) by fellow metalhead [Christian Johansen](http://cjohansen.no/).
 
-![Jasmine output](./static/img/booktddjs.png)
+![Jasmine output](__STATIC__/img/booktddjs.png)
 
 The book came out way back in 2010, and there has been [several](http://shop.oreilly.com/product/0636920025245.do) [books](http://shop.oreilly.com/product/0636920024699.do) [written](http://shop.oreilly.com/product/0636920028277.do) [since](https://www.packtpub.com/web-development/javascript-unit-testing). But I've read them all and my mind none of them comes even close to TDDJS, which not only gives you a thorough understanding for how tests work but also makes you *think* in a TDD way. And as an added bonus it increases your general JS fu while doing it!
 
@@ -49,7 +49,7 @@ describe("myMathLib",function(){
 
 If we run these tests in a browser, Jasmine outputs this:
 
-![Jasmine output](./static/img/generatedmanualjasmine.png)
+![Jasmine output](__STATIC__/img/generatedmanualjasmine.png)
 
 Jasmine makes for very readable code, and very clear output. The problem? Although easy and clear, I still find that the Jasmine code contains enough cruft that I sometimes choose not to write tests because it is too much of a hassle. This new `isDivisible` method I intend to add is so simple, surely I don't really need tests for that...
 
@@ -81,7 +81,7 @@ The difference might not be earth shattering but I still find the reduced cruft 
 
 Under the hood `literaltester` will make the relevant calls to `describe`, `it` and `expect`, rendering an identical output:
 
-![Jasmine output](./static/img/generatedjasmine.png)
+![Jasmine output](__STATIC__/img/generatedjasmine.png)
 
 ### The API in detail
 
@@ -135,7 +135,7 @@ literaltester("my math lib",myMathLib,{
 
 Here's the generated output from Jasmine:
 
-![Jasmine output](./static/img/generatedjasminewithcontext.png)
+![Jasmine output](__STATIC__/img/generatedjasminewithcontext.png)
 
 As you can see `literaltester` will generate a spy for each method in `context`, and test for `expectedargs` (if provided).
 

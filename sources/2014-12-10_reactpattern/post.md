@@ -23,7 +23,7 @@ var fruits = {
 
 I now want the user to be able to select one a time, something like this:
 
-<iframe src='./static/applets/reactpattern/select01.html' style="height:70px;width:100%"></iframe>
+<iframe src='__STATIC__/applets/reactpattern/select01.html' style="height:70px;width:100%"></iframe>
 
 What parts are involved in the select bar? Well, we need to:
 
@@ -74,7 +74,7 @@ var vegetables = {
 
 ...and we now want this...
 
-<iframe src='./static/applets/reactpattern/select01v.html' style="height:140px;width:100%"></iframe>
+<iframe src='__STATIC__/applets/reactpattern/select01v.html' style="height:140px;width:100%"></iframe>
 
 ...things get rather messy! Extending `Opinion` using the same approach as before we end up with something like this:
 

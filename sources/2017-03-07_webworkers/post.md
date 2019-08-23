@@ -35,7 +35,7 @@ This situation happened to me very recently, and instead of just webworkerifying
 
 I made a command line tool I call WorkerWrapper. Feed it a library...
 
-![](./static/diagrams/workerwrapper.svg)
+![](__STATIC__/diagrams/workerwrapper.svg)
 
 ...and it will **generate two files**. First off an **async version** of the library. This is a very small file that gives you an object containing the same method names as the library, but they now return promises that resolves when a webworker gets the result from the real method.
 

@@ -27,7 +27,7 @@ Kick the tires for a bit so you get a feel for what's going on, then read on to 
 
 These are the involved files (along with `index.html` and the generated `bundle.js`):
 
-![components](./static/img/superherofiles.png)
+![components](__STATIC__/img/superherofiles.png)
 
 Before we look at the components, let's examine the main plumbing first. The entry point is `index.js`:
 
@@ -265,7 +265,7 @@ Please take a moment to look at the various cases, and connect it to how the app
 
 The app are made up by these components:
 
-![components](./static/img/superherocomponents.png)
+![components](__STATIC__/img/superherocomponents.png)
 
 The hierarchy isn't strictly true as `Hero` and `Home` are served through `routes`:
 

@@ -189,7 +189,7 @@ pipe(
 
 In other words Callbag code (much like any stream code) is often a chain of sources passing through operators with a sink at the end:
 
-![](./static/diagrams/callbag-chain.svg)
+![](__STATIC__/diagrams/callbag-chain.svg)
 
 ### Wrapping up
 

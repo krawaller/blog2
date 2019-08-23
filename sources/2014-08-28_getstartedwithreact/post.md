@@ -25,7 +25,7 @@ As you can see the game is rather simple, yet included enough state and composit
 
 This is the full contents of the repo:
 
-<img src='./static/img/reactexperimentsource.png' style="margin-left:4em;" />
+<img src='__STATIC__/img/reactexperimentsource.png' style="margin-left:4em;" />
 
 The `lib` folder contains the only 3 dependencies:
 
@@ -35,7 +35,7 @@ The `lib` folder contains the only 3 dependencies:
 
 The `src` folder then contains files for all of our React components. The hierarchy looks like thus:
 
-<img src='./static/img/reactexperiment.png' style="height:200px;margin-left:4em" />
+<img src='__STATIC__/img/reactexperiment.png' style="height:200px;margin-left:4em" />
 
 Finally `index.html` is a super simple bootstrap kicking it all off:
 

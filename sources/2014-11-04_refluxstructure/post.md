@@ -320,7 +320,7 @@ Here's what will happen when a user enters a new chat message:
 
 If we anonymize the components to get back to the stone tablet laws, here's what's going on:
 
-![Reflux flow](./static/img/refluxflow2.jpeg)
+![Reflux flow](__STATIC__/img/refluxflow2.jpeg)
 
 Each "published to"-arrow of course corresponds to a reversed "listens to"-arrow.
 

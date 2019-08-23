@@ -73,9 +73,9 @@ For me not having animations wasn't an option, as the whole point of my task was
 
 ### The solution problem solution
 
-First off - here's the final result! The chart in the iframe below (standalone [here](./static/applets/react-d3-anim/)) is rendered in React, the animations are done in JSX space, and only tiny tweaks to the D3 code was needed.
+First off - here's the final result! The chart in the iframe below (standalone [here](__STATIC__/applets/react-d3-anim/)) is rendered in React, the animations are done in JSX space, and only tiny tweaks to the D3 code was needed.
 
-<iframe src="./static/applets/react-d3-anim/" height="450px" width="100%"></iframe>
+<iframe src="__STATIC__/applets/react-d3-anim/" height="450px" width="100%"></iframe>
 
 You can read the source code [here](https://github.com/krawaller/d3animatedchartinreact/blob/gh-pages/index.js), but here's a walkthrough of the general idea.
 

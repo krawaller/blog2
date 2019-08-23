@@ -54,7 +54,7 @@ And we render it like this:
 
 Then here is what we get:
 
-<iframe src="./static/applets/angularcomm/#stringviaat" style="height:50px;width:100%;"></iframe>
+<iframe src="__STATIC__/applets/angularcomm/#stringviaat" style="height:50px;width:100%;"></iframe>
 
 Using `@` creates an inner variable populated with the string content of the named attribute. You could say it serves as an **initial config** of the component.
 
@@ -71,7 +71,7 @@ We want to be able to do this...
 
 ...and pass the evaluation of `outervariable` into `dynamicinput`.
 
-<iframe src="./static/applets/angularcomm/#inputfirst" style="height:90px;width:100%;"></iframe>
+<iframe src="__STATIC__/applets/angularcomm/#inputfirst" style="height:90px;width:100%;"></iframe>
 
 Prior to AngularJS 1.5, the only syntax we had for this was `=`:
 
@@ -96,7 +96,7 @@ The component implementation would be exactly the same, except changing `=` for 
 
 Time to turn things around - how do we catch output from a component? See the tiny app below - the buttons are rendered in a child, and when they are clicked we want to update the outer value accordingly.
 
-<iframe src="./static/applets/angularcomm/#outputfirst" style="height:90px;width:100%;"></iframe>
+<iframe src="__STATIC__/applets/angularcomm/#outputfirst" style="height:90px;width:100%;"></iframe>
 
 This is where `&` comes in. It **interprets the attribute as a statement** and **wraps it in a function**. The component can then call that function at will, and populate variables in the statement. Output to the parent!
 
@@ -183,7 +183,7 @@ As an interesting aside, this pattern is exactly how output from a component wor
 
 This is where `=` is usually allowed to shine as an AngularJS poster boy. Take this app:
 
-<iframe src="./static/applets/angularcomm/#twowayeq" style="height:90px;width:100%;"></iframe>
+<iframe src="__STATIC__/applets/angularcomm/#twowayeq" style="height:90px;width:100%;"></iframe>
 
 If we render it like this...
 
@@ -241,7 +241,7 @@ Fact is, the four symbols are just shortcuts. We can do all that they do without
 
 The **string passing app**...
 
-<iframe src="./static/applets/angularcomm/#stringviaat" style="height:50px;width:100%;"></iframe>
+<iframe src="__STATIC__/applets/angularcomm/#stringviaat" style="height:50px;width:100%;"></iframe>
 
 ...that we rendered like this...
 
@@ -278,7 +278,7 @@ app.directive("readingstring", function(){
 
 The **dynamic input** app...
 
-<iframe src="./static/applets/angularcomm/#inputfirst" style="height:90px;width:100%;"></iframe>
+<iframe src="__STATIC__/applets/angularcomm/#inputfirst" style="height:90px;width:100%;"></iframe>
 
 ...rendered like this...
 
@@ -300,7 +300,7 @@ app.component("dynamicinput",{
 
 The **output app**...
 
-<iframe src="./static/applets/angularcomm/#outputfirst" style="height:90px;width:100%;"></iframe>
+<iframe src="__STATIC__/applets/angularcomm/#outputfirst" style="height:90px;width:100%;"></iframe>
 
 ...rendered like this...
 
@@ -330,7 +330,7 @@ This isn't exactly the same thing as `&` since we have now also polluted the par
 
 Finally the **two-way** app...
 
-<iframe src="./static/applets/angularcomm/#twowayeq" style="height:90px;width:100%;"></iframe>
+<iframe src="__STATIC__/applets/angularcomm/#twowayeq" style="height:90px;width:100%;"></iframe>
 
 ...rendered like with `=`...
 
@@ -362,7 +362,7 @@ We hope this journey has been educational, and that `@`, `<`, `=` and `&` now fe
 
 And that you noticed how `<` kicks the ass of the rest! It can do everything, which also `=` can, but `<` looks much better doing it.
 
-<img src="./static/img/angularjschart.png" style="margin-left: 2em; max-width: 400px;">
+<img src="__STATIC__/img/angularjschart.png" style="margin-left: 2em; max-width: 400px;">
 
 Both are somewhat clumsy for reading strings (`<` requires a string in a string, and `=` needs a proxy variable), but that's easy enough to do vanilla so `@` shouldn't get too cocky.
 

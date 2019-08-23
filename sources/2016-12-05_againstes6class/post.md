@@ -81,7 +81,7 @@ class PeepingAtThis extends React.Component {
 
 ...yields this output...
 
-![](./static/img/reactes6this.png)
+![](__STATIC__/img/reactes6this.png)
 
 ...just isn't very elegant.
 
@@ -120,7 +120,7 @@ class WhatAmI extends React.PureComponent {
 
 ...which of course in turn inherits from `React.Component`:
 
-![](./static/img/es6inherit.png)
+![](__STATIC__/img/es6inherit.png)
 
 But, to my mind, inheritance is a vastly inferior model. Let's say that there was now a base class version of `ReactFireMixin` (which there isn't). How would you go about using that **and** `PureComponent` at the same time? You can't! While with `React.createClass`, no problem:
 

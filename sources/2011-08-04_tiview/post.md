@@ -21,15 +21,15 @@ Eventually the added-up frustration got too great, so I set aside some time for 
 
 As stated the app is very simple. It has a number of demos, ordered into categories. The screenshot below shows the current content, I hope to add some more to it before I move on too far:
 
-![TiView index](./static/img/tiviewindex.png)
+![TiView index](__STATIC__/img/tiviewindex.png)
 
 Each category then consists of a ScrollableView, where each view is a demo of some layout code. The properties used are displayed inside the laid-out child:
 
-<img src="./static/img/tiview1.png" style="width:175px;" />
-<img src="./static/img/tiview2.png" style="width:175px;" />
-<img src="./static/img/tiview3.png" style="width:175px;" />
-<img src="./static/img/tiview4.png" style="width:175px;" />
-<img src="./static/img/tiview5.png" style="width:175px;" />
+<img src="__STATIC__/img/tiview1.png" style="width:175px;" />
+<img src="__STATIC__/img/tiview2.png" style="width:175px;" />
+<img src="__STATIC__/img/tiview3.png" style="width:175px;" />
+<img src="__STATIC__/img/tiview4.png" style="width:175px;" />
+<img src="__STATIC__/img/tiview5.png" style="width:175px;" />
 
 The source code is available in the Git repo [here](http://github.com/krawaller/tiview). Have a snoop and see if might be of any help. Or even better, add more demos of your own! It&#8217;s just 250 lines in a single file, and all the demos are just object literals sent into a constructor function, so getting your own ideas in there shouldn&#8217;t require that strong a shoe-horn:
 

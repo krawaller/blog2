@@ -12,7 +12,7 @@ type: post
 
 For the last couple of weeks I've been enjoying the [O'Reilly early release](http://shop.oreilly.com/product/9781939902122.do) of the upcoming [Developing a React.JS Edge](http://bleedingedgepress.com/developing-react-js-edge/) (DaRE) from Bleeding Press.
 
-![Developing a ReactJS Edge](./static/img/reactedge.jpg)
+![Developing a ReactJS Edge](__STATIC__/img/reactedge.jpg)
 
 Opening the book I had rather low expectations - a previous effort in the same series [left me wanting](https://blog.krawaller.se/posts/book-review-developing-a-backbone-js-edge/), and also I arrogantly thought myself to have ascended well above the knowledge generally provided by entry-level books like this. Turns out I was wrong on both accounts!
 

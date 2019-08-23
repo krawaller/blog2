@@ -154,7 +154,7 @@ The `ThunkAction` gets `<ReturnVal, AppState, ExtraAPI>` passed in. Some like to
 
 The main win from using `ThunkAction` is that it will correctly type `dispatch`, `getState` and the return value of `getState`:
 
-![](./static/img/rearedtyp_thunk.png)
+![](__STATIC__/img/rearedtyp_thunk.png)
 
 I had good help of the discussion in [this `redux-thunk` issue](https://github.com/gaearon/redux-thunk/issues/103) when wrapping my brain around this.
 
@@ -208,7 +208,7 @@ Note how we use the `.toString` of the action creators, saving us from having to
 
 And through the `Action<actionCreatorPayload>` typing we get the correct type for `action.payload` inside the handler:
 
-![](./static/img/rearedtyp_reducer1.png)
+![](__STATIC__/img/rearedtyp_reducer1.png)
 
 This is kind of neat, but there are still two drawbacks here:
 
@@ -234,7 +234,7 @@ const messagingReducer = buildReducer<MessagingState>()
 
 Far fewer typings (we don't even need to import the action payload types!), no room to connect the wrong handler with the wrong type, and still full support for state, payload and return type:
 
-![](./static/img/rearedtyp_reducer2.png)
+![](__STATIC__/img/rearedtyp_reducer2.png)
 
 Granted, having to call `.done()` at the end might feel a bit boilerplaty, but I still much prefer this helper to the `handleActions` one from `ReduxActions` shown earlier.
 
@@ -278,7 +278,7 @@ function buildReducer<TState>(): builderObject<TState> {
 
 If we just create the store directly with `createStore`, the type will be inferred from the reducer (even if we didn't have initial state):
 
-![](./static/img/rearedtyp_store.png)
+![](__STATIC__/img/rearedtyp_store.png)
 
 When using an enhancer such as created by `applyMiddleware`, we must type the variable ourselves:
 

@@ -15,7 +15,7 @@ As weekends have an unfortunate habit of ending we didn't get too far (also the 
 
 Our little game is woefully simple and light years from completion, but with features like respawn, grace, reload time and recoil, it still feels like the start of something!
 
-![screenshot](./static/img/kratank.png)
+![screenshot](__STATIC__/img/kratank.png)
 
 Live link [here](http://krawaller.github.io/kratankpubl/live), repo [here](https://github.com/krawaller/kratankpubl) (although with minified impact source, as per the license). Only the green tank can actually fire, which gives him an ever so slight advantage...
 
@@ -37,7 +37,7 @@ The files that make up the non-impact parts of the game (i.e, what we wrote) is 
 
 There are also 5 files in an [entities](https://github.com/krawaller/kratankpubl/tree/gh-pages/live/lib/game/entities) folder, who fit together like thus:
 
-![diagram](./static/img/kratankentities.jpg)
+![diagram](__STATIC__/img/kratankentities.jpg)
 
 These files do pretty much what you'd think:
 

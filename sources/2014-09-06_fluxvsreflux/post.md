@@ -3,7 +3,7 @@ url: "react-js-architecture-flux-vs-reflux"
 id: fluxvsreflux
 title: React.js architecture - Flux VS Reflux
 author: david
-tags: [react,reflux]
+tags: [react, reflux]
 date: 2014-09-06
 excerpt: "Comparing two architectures for React.js apps: Flux, and the Reflux adaption"
 type: post
@@ -21,7 +21,7 @@ One of the big wins of React for me was how easy it was to grasp. Understand the
 
 Flux goes a long way to destroy the React advantage, as it comes with a high cognitive price tag much like Angular et al. Here's Facebook's picture to explain the Flux way:
 
-![Flux architecture](./static/img/flux-diagram.png)
+![Flux architecture](__STATIC__/img/flux-diagram.png)
 
 Maybe I'm not the sharpest bulb in the box, but this diagram just doesn't speak to me!
 
@@ -41,7 +41,7 @@ Either way I thought the switch-out was interesting, and will be walking through
 
 ###Comparing dependencies
 
-First off, using Reflux means requiring the `Reflux` library, installable by npm as usual. Flux is pitched as an architecture and not a library, but you need the [Dispatcher](https://github.com/facebook/flux/blob/master/src/Dispatcher.js) which you then adapt to your app. 
+First off, using Reflux means requiring the `Reflux` library, installable by npm as usual. Flux is pitched as an architecture and not a library, but you need the [Dispatcher](https://github.com/facebook/flux/blob/master/src/Dispatcher.js) which you then adapt to your app.
 
 Thus the net effect is really that in the Reflux version I change out `Dispatcher` for `Reflux`.
 
@@ -51,15 +51,14 @@ For components calling actions, the code is completely identical. Here's a butto
 
 ```javascript
 var Increase = React.createClass({
-  handleClick:function(){
+  handleClick: function() {
     appActions.increaseItem(this.props.index);
-  },
+  }
   // rest redacted
 });
 ```
 
 The Flux and Reflux versions are exactly the same, apart from requiring different versions of `appActions`. All they do is call the relevant action function, in this case with an index as data.
-
 
 ###Comparing component listening to store changes
 
@@ -134,11 +133,11 @@ And here's the corresponding Reflux store:
 ```javascript
 Reflux.createStore({
   init: function() {
-    this.listenTo(actions.addItem,_addItem);
-    this.listenTo(actions.removeItem,_removeItem);
-    this.listenTo(actions.increaseItem,_increaseItem);
-    this.listenTo(actions.decreaseItem,_decreaseItem);
-  },
+    this.listenTo(actions.addItem, _addItem);
+    this.listenTo(actions.removeItem, _removeItem);
+    this.listenTo(actions.increaseItem, _increaseItem);
+    this.listenTo(actions.decreaseItem, _decreaseItem);
+  }
   // rest redacted
 });
 ```
@@ -151,31 +150,31 @@ The actions in the Flux version are rather verbose:
 
 ```javascript
 var appActions = {
-  addItem:function(item){
+  addItem: function(item) {
     AppDispatcher.handleViewAction({
       actionType: AppConstants.ADD_ITEM,
       item: item
-    })
+    });
   },
-  removeItem:function(index){
+  removeItem: function(index) {
     AppDispatcher.handleViewAction({
       actionType: AppConstants.REMOVE_ITEM,
       index: index
-    })
+    });
   },
-  decreaseItem:function(index){
+  decreaseItem: function(index) {
     AppDispatcher.handleViewAction({
       actionType: AppConstants.DECREASE_ITEM,
       index: index
-    })
+    });
   },
-  increaseItem:function(index){
+  increaseItem: function(index) {
     AppDispatcher.handleViewAction({
       actionType: AppConstants.INCREASE_ITEM,
       index: index
-    })
+    });
   }
-}
+};
 ```
 
 While in Reflux they're absolutely not:
@@ -195,10 +194,10 @@ Fist the Flux version:
 
 ```javascript
 var AppDispatcher = merge(Dispatcher.prototype, {
-  handleViewAction: function(action){
+  handleViewAction: function(action) {
     this.dispatch({
-      source: 'VIEW_ACTION',
-      action:action
+      source: "VIEW_ACTION",
+      action: action
     });
   }
 });
@@ -216,6 +215,6 @@ That's right - Reflux does away entirely with the concept of an app-specific dis
 
 Probably Flux proponents can find many things being not entirely fair in this comparison, but for me, changing to Reflux made me breathe easier. The code is sleek, and I have a firm grasp of how the parts are wired. Components listen to stores and call actions. Stores listen to actions and toot when they're updated. Simple as that!
 
-<img src='./static/img/reflux-flow.jpg' style="margin-left:4em;max-height:300px;" />
+<img src='__STATIC__/img/reflux-flow.jpg' style="margin-left:4em;max-height:300px;" />
 
 I've glanced at some other Flux-inspired libraries, of which there are many. So far Reflux seems to be the most solid option, and I'm excited to follow along in its continued development!

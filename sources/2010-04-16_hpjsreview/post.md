@@ -11,7 +11,7 @@ type: post
 
 Is the town of JavaScript performance big enough for both Souders & Zakas? Can the newly released book High Performance JavaScript hold its own against the established bible Even Faster Websites? Catch the captivating conclusion here!
 
-![zakas vs souders](./static/img/zakasvssouders.jpg)
+![zakas vs souders](__STATIC__/img/zakasvssouders.jpg)
 
 Nicholas Zakas, of [Professional JavaScript for Web Developers](http://www.amazon.com/Professional-JavaScript-Developers-Wrox-Programmer/dp/047022780X/) authoring fame, recently had his latest book released, titled [High Performance JavaScript](http://oreilly.com/catalog/9780596802806/) (HPJS). Having found [his blog](http://www.nczonline.net/) to be an excellent resource on JavaScript insights, I was very much looking forward to this book. The fact that he'd also enlisted frontend rock stars such as&hellip;
 

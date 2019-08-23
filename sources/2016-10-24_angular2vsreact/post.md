@@ -13,7 +13,7 @@ excerpt: Some musings around the comparison, and my part in an upcoming live deb
 
 If you're a regular reader of this blog, you'll be surprised to know that my picture is to the *left* on the flyer below:
 
-![](./static/img/angular2_vs_react.jpg)
+![](__STATIC__/img/angular2_vs_react.jpg)
 
 In other words, in this debate, I will be arguing on behalf of Angular2 against React! Have I been swayed by the newest kid on the block?
 

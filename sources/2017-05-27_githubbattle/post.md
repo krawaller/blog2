@@ -15,7 +15,7 @@ This blog post contains a small case study using [Angular](https://angular.io/) 
 
 The app is [Github Battle](http://githubbattle.netlify.com/), a tiny app that lets you enter Github user names to see who has the most stars. Try it out below!
 
-<iframe src="./static/applets/githubbattle" style="height:400px;width:100%;"></iframe>
+<iframe src="__STATIC__/applets/githubbattle" style="height:400px;width:100%;"></iframe>
 
 You can also access the app directly [here](http://githubbattle.netlify.com/), and the github repo is [here](https://github.com/krawaller/githubbattle).
 
@@ -32,7 +32,7 @@ Note that we use the Firebase authentication only as a convenient Github login, 
 
 The [source code](https://github.com/krawaller/githubbattle) is commented and not very big in scope, but here's a quick overview and walkthrough:
 
-![](./static/diagrams/githubbattle.svg)
+![](__STATIC__/diagrams/githubbattle.svg)
 
 The top-level [App component](https://github.com/krawaller/githubbattle/blob/master/components/app.ts) handles the login functionality, by utilising features exposed by the [Auth service](https://github.com/krawaller/githubbattle/blob/master/services/authservice.ts). The Auth service owns the authentication state, and is the only place in the app referencing Firebase.
 

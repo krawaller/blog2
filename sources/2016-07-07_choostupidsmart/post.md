@@ -21,7 +21,7 @@ It started when a [discussion on an unrelated Choo issue](https://github.com/yos
 
  But some components might have state that only they care about, and then it is convenient to let them manage that state. In the framework comparison comparison we created the app running in the iframe below:
 
-<iframe src="./static/applets/comparison/index.html" height="100px" width="100%"></iframe>
+<iframe src="__STATIC__/applets/comparison/index.html" height="100px" width="100%"></iframe>
 
 The button is a separate component, meant to be self-contained and portable. It therefore needs to track the current state (waiting or confirming), and handle the events that toggle this. If you want the button in your app, all you need to do is replace your static button with the component and listen to the confirm callbacks. Convenient!
 

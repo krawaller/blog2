@@ -20,7 +20,7 @@ You can find the repo for the app at [https://github.com/krawaller/callbag-todom
 
 The code is split into 4 parts; `makeActions`, `makeState`, `makeView` and `makeSideEffects`. They are chained together like so:
 
-![](./static/diagrams/callbag-mvi.svg)
+![](__STATIC__/diagrams/callbag-mvi.svg)
 
 If you've ever played with the [CycleJS framework](https://cycle.js.org/) you might recognise this as inspired by the [Model View Intent pattern](https://cycle.js.org/model-view-intent.html).
 
@@ -77,7 +77,7 @@ const allActions = merge(initActions, newTodoActions, ... );
 
 The `allActions` stream is a good clue to what will come in [state.js](https://github.com/krawaller/callbag-todomvc/blob/master/src/state.js); we'll calculate the state by using a [Redux](https://redux.js.org/)-like pattern!
 
-![](./static/diagrams/callbag-redux.svg)
+![](__STATIC__/diagrams/callbag-redux.svg)
 
 This means that our app state is one single object. Using TypeScript definitions it looks like this:
 

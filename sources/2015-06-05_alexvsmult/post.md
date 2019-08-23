@@ -15,7 +15,7 @@ type: post
 Last year, after 4 years of hard labour, I finally released [Algebra Explorer](../algebra-explorer-a-symbolic-calculator-web-app/), a web app designed to help you learn Algebra. Since then I've tried to find a place for it in my own teaching, as well as spreading the gospel to teachers and students.
 
 <p style='text-align:center;'>
-![substeps](./static/img/alexscreen.png)
+![substeps](__STATIC__/img/alexscreen.png)
 </p>
 
 But in spite of making it a comletely free web app, I've had a really hard time "selling" it. Two big reasons are presumably that...
@@ -29,7 +29,7 @@ However, I believe an even bigger reason to be the old truth about tool complexi
 
 Recently, on a whim, I made [simple web app](https://blog.krawaller.se/multhelp/) to help my students practice the multiplication table.
 
-![Multiplication table practice](./static/img/mult.png)
+![Multiplication table practice](__STATIC__/img/mult.png)
 
 Click a button with a multiplication, and it will rise to show you the answer. All other buttons with the same answer will rise too. Click a side button to raise all in that row/column. By using the top-left button you can also practice multiplications within a given range.
 

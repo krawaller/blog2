@@ -16,7 +16,7 @@ Very likely you're already familiar with [TodoMVC](http://todomvc.com/), [Addy O
 
 For this to work the app itself has to be very simple, and it is:
 
-![Reflux TodoMVC app](./static/img/refluxtodoapp.png)
+![Reflux TodoMVC app](__STATIC__/img/refluxtodoapp.png)
 
 There is full CRUD for todo items, and some aggregation such as toggling all, clearing all finished items and filtering.
 
@@ -34,7 +34,7 @@ As detailed in our [post on the Reflux data flow model](https://blog.krawaller.s
 
 We used this pucture to illustrate the model:
 
-![Reflux data flow](./static/img/refluxflow2.jpeg)
+![Reflux data flow](__STATIC__/img/refluxflow2.jpeg)
 
 As we will find, this model holds true for the TodoMVC app as well (apart from it not having a separate database).
 
@@ -151,7 +151,7 @@ The initial load from localStorage is done in `getDefaultData`, which is what al
 
 Before we dive into the individual components, here's a high-level look at how they are related, and where the various action calls are located:
 
-![Reflux TodoMVC components](./static/img/refluxtodocomps.png)
+![Reflux TodoMVC components](__STATIC__/img/refluxtodocomps.png)
 
 As you can see the app is made up from 5 different components, all defined in `src/components.jsx.js`.
 

@@ -26,7 +26,7 @@ The example application is a simple submission form. The flow is like thus:
 
 Try it out below!
 
-<iframe src="./static/applets/comparison/index.html" height="100px" width="100%"></iframe>
+<iframe src="__STATIC__/applets/comparison/index.html" height="100px" width="100%"></iframe>
 
 The application is made up by two components - a child `Confirm` button, which is then used by the parent `Submission` component making up the form.
 
@@ -42,7 +42,7 @@ The `Submission` component needs to tell `Confirm` whether it is **disabled** (s
 
 The state and communication can be expressed through the following diagram:
 
-![overview](./static/diagrams/overview.svg)
+![overview](__STATIC__/diagrams/overview.svg)
 
 We will now implement these two components in all four frameworks, and then discuss the comparison. The main rule will be that `Confirm` should be decoupled enough to be reusable in a completely different app.
 
@@ -54,11 +54,11 @@ First out - React! You can find a Webpackbin with the app running at [http://www
 
 React's model is very simple - everything is made up by **components**, whose UI are the results of their internal **state** and the **properties** passed from the parent.
 
-![reactcomp](./static/diagrams/reactcomp.svg)
+![reactcomp](__STATIC__/diagrams/reactcomp.svg)
 
 A parent talks to the child by passing props. If a child needs to be able to answer, we pass a *callback* prop which the child should call at the appropriate time.
 
-![reactcommunication](./static/diagrams/reactcommunication.svg)
+![reactcommunication](__STATIC__/diagrams/reactcommunication.svg)
 
 If we need more app-wide communication we might want to use something like [Redux](http://redux.js.org/) instead, but that would be overkill for this implementation.
 
@@ -180,7 +180,7 @@ Of these four frameworks CycleJS is probably the most exotic one. A Cycle app co
 
 We will implement our app following the [Model-View-Intent](http://cycle.js.org/model-view-intent.html) pattern:
 
-![mvi](./static/diagrams/mvi.svg)
+![mvi](__STATIC__/diagrams/mvi.svg)
 
 1.   A component receives `sources` from the parent or the root renderer
 1.   The `intent` function translates these to a stream of `actions`
@@ -288,13 +288,13 @@ If CycleJS is the most exotic of our four frameworks, Choo is definitely the new
 
 In Choo it is common to have an app-wide `model`, very similar to Redux' role in React. But according to our self-imposed rules the components should be stand-alone and reusable, and so must contain their own model definitions! We accomplish this by defining the components in constructors which you pass the `app` object to, so each component can register the model parts they need.
 
-![choo constr](./static/diagrams/chooconstr.svg)
+![choo constr](__STATIC__/diagrams/chooconstr.svg)
 
 A Choo `model` definition consists of `state`, `reducers` to manipulate that state, and `effects` for side effects. If the optional `namespace` property is set the reducers and effects can only access the state within its own model to provide, as the documentation puts it, 'sturdiness'.
 
 The actual component is then just a pure function that receives the application `state`, a `send` method for triggering effects and reducers, and whatever else you want to pass in. The component function returns DOM nodes for rendering, but unlike the other three frameworks Choo does not use virtual DOM nodes, but instead uses [morphdom](https://github.com/patrick-steele-idem/morphdom) to diff real DOM nodes. 
 
-![choo render](./static/diagrams/choorender.svg)
+![choo render](__STATIC__/diagrams/choorender.svg)
 
 Note that we are using Choo version `2.3.1`, but `3.0.0` [just came out](https://github.com/yoshuawuyts/choo/blob/master/CHANGELOG.md#300). We'll hopefully take a look at what has changed in an upcoming, all-choo post!
 
@@ -566,7 +566,7 @@ const Submission = withComponent(SubmissionMain,Confirm,'disabled$')
 
 Although the full code for the CycleJS version is by far the longest of all versions, all communication is isolated to the component main functions. Here we see that `Confirm` component returns a `submit` stream, which through the `withComponent` call will become part of the `sources` for `Submission`. That same call also passes the returned `disabled` stream from `Submission` into the `sources` for `Confirm`.
 
-![cyclecomm](./static/diagrams/cyclecomm.svg)
+![cyclecomm](__STATIC__/diagrams/cyclecomm.svg)
 
 Finally, in **Choo** the communication is defined in the `effects` and `reducers` props of the `model` objects.
 

@@ -14,7 +14,7 @@ type: post
 For several years now I've tried to combine my programming self with my maths teacher alter ego by working on a symbolic calculator that would show the substeps of the manipulations made, to allow people to more easily understand the intricacies of algebra. Now I'm finally finished, and I am ever so happy to present to you - Algebra Explorer!
 
 <p style='text-align:center;'>
-	<img src="./static/img/alexscreen.png">
+	<img src="__STATIC__/img/alexscreen.png">
 </p>
 
 You can find out more by visiting [the homepage](http://www.algebraexplorer.com), but as it is a web app you can also try it out right here by clicking the button below!
@@ -118,7 +118,7 @@ Note how the `result` when calling `perform` will be `target.objs[0]`. Since the
 Now consider the rule that if a power has an exponent of 0, it is equal to 1 (actually it is not quite that simple since the base cannot be 0 too, but never mind that for now). This is _not_ a basic truth, but a consequence of the above rule and several other rules. Here's what this looks like in the app:
 
 <p style='text-align:center;'>
-<img src="./static/img/alexsubsteps.png" />
+<img src="__STATIC__/img/alexsubsteps.png" />
 </p>
 
 And here is the source code for this operation, where you can see it explicitly calling each substep:

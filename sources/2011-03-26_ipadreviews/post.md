@@ -38,7 +38,7 @@ And here follows a quick run through our favourite tool for each of these areas!
 
 First off: mindmapping. This can be used initially just to sort app ideas together, but also in a later stage to map out the ingredients of the app: UI parts, classes, globals, etc. In essence this is our rebellious interpretation of a UML class diagram, I guess. 
 
-![iThoughts](./static/img/ithoughts.jpg)
+![iThoughts](__STATIC__/img/ithoughts.jpg)
 
 To this end, our favourite tool has come to be iThoughts HD. There are a lot of various options, of which I've tried most, but iThoughts somehow just resonates with me. Some favoured features are:
 
@@ -50,7 +50,7 @@ Flowcharting with Instaviz
 
 When zooming in a bit at the process and planning out a user interaction (or even a specific application function), flowcharting is an excellent way to visualize your thoughts. Again there are a multitude of options of which I've sampled most, but the one that stuck out from the crowd is Instaviz. 
 
-![iThoughts](./static/img/instaviz.jpg)
+![iThoughts](__STATIC__/img/instaviz.jpg)
 
 Instaviz boasts having an advanced layout algorithm developed over the course of decades, and this immediately shows. Not having any control of the actual layout and position of boxes takes some getting used to, but once you have it's really convenient. The algorithm will always (so far completely without exception) find an excellent way to organize the boxes, so that the flow is easy to follow and as few connections as possible cross each other.
 
@@ -64,7 +64,7 @@ For laying out the user interface, I've fallen in love with Omnigraffle. In comp
 
 Perhaps even more important - through Omnigraffle's excellent multiselection tools it is very easy to manipulate an existing mockup, enabling to try out different layouts as quickly as you can think them.
 
-![iThoughts](./static/img/omnigraffle.jpg)
+![iThoughts](__STATIC__/img/omnigraffle.jpg)
 
 Omnigraffle is based around the concept of stencils, which work a bit like LEGO bricks; there are lots of different pre-made parts (like for instance the various parts of the iOS UI) which you can import into your diagram, letting you quickly scaffold your prototype.
 
@@ -78,7 +78,7 @@ But, when it comes to prototyping, it really is a beast, and in my mind the rich
 
 Charts and mindmaps and UML and OOAD and software engineering in all its glory - sometimes you just need to doodle! When overcome by that urge, our favourite tool is Drawing Pad. Super-easy to use, yet still surprisingly powerful.
 
-![iThoughts](./static/img/drawingpad.jpg)
+![iThoughts](__STATIC__/img/drawingpad.jpg)
 
 There are several more professional drawing apps out there, but for us that kind of misses the mark - our doodle needs are, per definition, basic and immediate, and thus we need a basic and immediate app to fulfill them. Paint instead of Photoshop, so to say. Drawing Pad fits this role perfectly
 
@@ -86,7 +86,7 @@ There are several more professional drawing apps out there, but for us that kind
 
 As initially stated, we first sketch and doodle and map on the iPad, and then move on to coding on our MacBooks. Sometimes, however, you'll want to hack down some code while doodling, or maybe quickly read/review some existing code in order to know how to proceed with the current flowchart. Then it is convenient to have the possibility to do so directly on the iPad, and not having to change devices.
 
-![iThoughts](./static/img/textastic.jpg)
+![iThoughts](__STATIC__/img/textastic.jpg)
 
 When this happens, we turn to Textastic. Expensive in comparison to its competitors, but again, you get what you pay for. A very nice interface and excellent Dropbox support has won us over. 
 
@@ -98,7 +98,7 @@ And, as stated above, we frequently find ourselves wanting to read some specific
 
 Ok, so focus was on the design process, but now I've mentioned Dropbox too many times not to give it its own headline. Dropbox is a brilliant tool for sharing files, and especially well suited for the development flow consisting of all of the above mentioned apps. 
 
-![iThoughts](./static/img/dropbox.jpg)
+![iThoughts](__STATIC__/img/dropbox.jpg)
 
 We'll make a Dropbox folder for our project, and then from the other productivity apps we'll export the result to that folder. For the apps that don't support Dropbox (like Instaviz) we export a photo, which we can then put into the folder using the Dropbox app.
 

@@ -41,9 +41,9 @@ Which was like christmas to me! The only non-Krawaller Titanium source code I&#8
 
 So, enter Tweetanium. As soon as you open up the source code, it is evident that they&#8217;re doing things very differently! I have created a stripped-down, barebones version of it called Struct, aiming to expose the new structure paradigm. You&#8217;ll find the git repo [here](https://github.com/krawaller/struct). This is what the app looks like &ndash; isn&#8217;t knowledge beautiful? :)
 
-<img src="./static/img/struct1.png" style="width:175px;" />
-<img src="./static/img/struct2.png" style="width:175px;" />
-<img src="./static/img/struct3.png" style="width:175px;" />
+<img src="__STATIC__/img/struct1.png" style="width:175px;" />
+<img src="__STATIC__/img/struct2.png" style="width:175px;" />
+<img src="__STATIC__/img/struct3.png" style="width:175px;" />
 
 The main point in the Tweetanium approach is that my various files (like somefile.js in the above example) are not messing with Ti.UI.currentWindow &ndash; instead, it augments a global namespace with a constructor variable. In Struct, I end up with the following global object:
 

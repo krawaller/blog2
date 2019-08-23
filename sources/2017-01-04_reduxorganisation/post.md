@@ -74,7 +74,7 @@ module.exports = function() {
 
 To see the persistent stats for a particular hero, simply click his name:
 
-![](./static/img/reduxexampleherodetail.gif)
+![](__STATIC__/img/reduxexampleherodetail.gif)
 
 ### The bug
 
@@ -86,7 +86,7 @@ The bug that Samuel Bleckley found is the embarrassing fact that kills are recor
 
 Here you can see it in action - After the 2 second aiming period Batman gets a kill recorded even though Superman is ducking:
 
-![](./static/img/reactreduxexamplebug.gif)
+![](__STATIC__/img/reactreduxexamplebug.gif)
 
 The explanation as to why this happens is pretty straightforward. Here is the [action creator](https://github.com/krawaller/riastart2015/blob/gh-pages/src/actions.js#L24-L32) that is called when we click a kill button:
 
@@ -134,7 +134,7 @@ return newstate;
 
 Zooming out, here's a map of the logic happening when we fire:
 
-![](./static/diagrams/reactreduxexampleflow.svg)
+![](__STATIC__/diagrams/reactreduxexampleflow.svg)
 
 But since we branch between a valid kill and a spam message inside `battlefieldReducer`, there's no way for anyone else to distinguish between a kill and an attempted kill!
 
@@ -241,7 +241,7 @@ In the case of my little example app, option 3 was wrong for the shot consequenc
 
 What about option 4? Recently I made a web version of the print &amp; play demo of the board game [Tiny Epic Quest](https://boardgamegeek.com/boardgame/201921/tiny-epic-quest), to support its [Kickstarter campaign](https://www.kickstarter.com/projects/coe/tiny-epic-quest-introducing-itemeeplestm/). Here you can see the web app in action:
 
-![](./static/img/teqdemo.gif)
+![](__STATIC__/img/teqdemo.gif)
 
 Each player commands a group of adventurers that roam around the map, solve quests, gain items, adventure into temples, battle goblins, etc. You can probably imagine that the business logic for this is very complex!
 

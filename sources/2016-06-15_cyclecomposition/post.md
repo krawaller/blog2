@@ -21,13 +21,13 @@ We'll use [most](https://github.com/cujojs/most) for our streams in the code exa
 
 To test the concepts we'll be using the below application. Please kick it around for a bit to see how it works!
 
-<iframe class="nb" src="./static/applets/cyclecomp/demos/nameform_02.html" height="160px" width="100%"></iframe>
+<iframe class="nb" src="__STATIC__/applets/cyclecomp/demos/nameform_02.html" height="160px" width="100%"></iframe>
 
 There are three components in use here; **Nameform**, **Textentry** and **Confirm**. You can see the border between them as dashed lines in the live app above.
 
 Here's a diagram of how they are nested:
 
-![components](./static/diagrams/cycle-components.svg)
+![components](__STATIC__/diagrams/cycle-components.svg)
 
 We'll now walk through them one at a time, starting from the inside and working our way out!
 
@@ -41,11 +41,11 @@ The innermost component is the button. It has **three modes**:
 
 Here's the API:
 
-![confirm api](./static/diagrams/cycle-confirm-api.svg)
+![confirm api](__STATIC__/diagrams/cycle-confirm-api.svg)
 
 It **expects the parent to give it a `disabled` stream** as a source to let it know when to enter the disabled mode. In turn the component **returns a `submit` stream** for the parent to consume, containing an event per time the user clicked the confirm button.
 
-Since it is a leaf component the implementation isn't relevant to the subject of this post, but if you're interested you can check out the source code [here](./static/applets/cyclecomp/components/confirm.js).
+Since it is a leaf component the implementation isn't relevant to the subject of this post, but if you're interested you can check out the source code [here](__STATIC__/applets/cyclecomp/components/confirm.js).
 
 
 ### The Textentry component
@@ -56,7 +56,7 @@ This component is responsible for...
 
 Here's the API:
 
-![textentry api](./static/diagrams/cycle-textentry-api.svg)
+![textentry api](__STATIC__/diagrams/cycle-textentry-api.svg)
 
 `Textentry` uses the `Confirm` component, but here things get hairy:
 
@@ -87,7 +87,7 @@ function Textentry(sources){
 });
 ```
 
-If you want to see the full source including `intent`, `model` and `view`, check [here](./static/applets/cyclecomp/components/textentry_02.js).
+If you want to see the full source including `intent`, `model` and `view`, check [here](__STATIC__/applets/cyclecomp/components/textentry_02.js).
 
 
 
@@ -95,7 +95,7 @@ If you want to see the full source including `intent`, `model` and `view`, check
 
 This is the outermost component, which **holds the currently submitted name**. It has the following API:
 
-![nameform api](./static/diagrams/cycle-nameform-api.svg)
+![nameform api](__STATIC__/diagrams/cycle-nameform-api.svg)
 
 The `store` streams in sources and sinks are handled by a `localStorage` driver, persisting the name between sessions.
 
@@ -132,7 +132,7 @@ We didn't need a proxy here since `Textentry` didn't need any input from `Namefo
 
 Here's an overview of how our components fit together:
 
-![nameform api](./static/diagrams/cycle-composition.svg)
+![nameform api](__STATIC__/diagrams/cycle-composition.svg)
 
 The red arrow shows the circular dependency we had to solve between `Textentry` and `Confirm`.
 
@@ -143,7 +143,7 @@ This spurred me to try to make a **composition helper method**. After several it
 *    expose the child sinks among the parent sources
 *    provide (and proxy) needed parent sinks into child sources
 
-![helper pattern](./static/diagrams/cycle-helper.svg)
+![helper pattern](__STATIC__/diagrams/cycle-helper.svg)
 
 Let's see some details!
 
@@ -184,7 +184,7 @@ const Textentry = withComponent(main,Confirm,"disabled$")
 
 Comparing to the previous implementation we see that **all proxy dancing went away**. And we didn't need to touch `intent`, `model` or `view` at all (although if we did we could do some more cleanup).
 
-![code anim](./static/img/codeanim.gif)
+![code anim](__STATIC__/img/codeanim.gif)
 
 
 

@@ -18,7 +18,7 @@ In order to find out, we're going to build a super simple app that uses both Rea
 
 Here's the super-complicated app we're going to build:
 
-<iframe src="./static/applets/fromcourse/demos/usinglibiframe.html" height="200px" width="100%"></iframe>
+<iframe src="__STATIC__/applets/fromcourse/demos/usinglibiframe.html" height="200px" width="100%"></iframe>
 
 
 ### The Redux parts
@@ -208,7 +208,7 @@ This vanilla solution **works just fine**. The only downside is that we had to *
 *    `QuoteListContainer` needed `store.subscribe` and `store.getState`
 *    `QuoteFormContainer` needed `store.dispatch`.
 
-A stand-alone vanilla version with full source displayed can be found [here](./static/applets/fromcourse/demos/vanilla.html).
+A stand-alone vanilla version with full source displayed can be found [here](__STATIC__/applets/fromcourse/demos/vanilla.html).
 
 
 ### The React-Redux API
@@ -256,7 +256,7 @@ We'll now **look at the 3 parameters to `connect`** one at a time:
 
 *	Finally the `mergeProps` function handles the fact that a connected component **receives props from 3 sources** which must somehow be **baked together**:
 
-	![bake props](./static/img/rr-propsources.png)
+	![bake props](__STATIC__/img/rr-propsources.png)
 
 	If `mergeProps` isn't supplied then `ReactRedux` will do this **by default**:
 
@@ -342,7 +342,7 @@ ReactDOM.render(
 
 The `Provider` uses the [React context API](https://facebook.github.io/react/docs/context.html) to supply a store reference to the generated container components.
 
-This version of our app is published [here](./static/applets/fromcourse/demos/usinglib.html), again with the full source appended.
+This version of our app is published [here](__STATIC__/applets/fromcourse/demos/usinglib.html), again with the full source appended.
 
 
 ### Controversy

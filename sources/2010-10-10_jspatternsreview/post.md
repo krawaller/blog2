@@ -19,7 +19,7 @@ So, how did he fare? Well:
 *    But - his participation in [Nicholas Zakas](http://nczonline.net/)' [High Performance JavaScript](http://oreilly.com/catalog/9780596802806) worked out beautifully, as [previously extolled](../book-review-high-performance-javascript/) on this blog&hellip;
 *    &hellip;and now, O'Reilly has released [JavaScript Patterns](http://oreilly.com/catalog/9780596806767) (JSP), a solitary book project from Stoyan on design and coding patterns in JavaScript development.
 
-![JS Patterns](./static/img/jspatterns.jpg)
+![JS Patterns](__STATIC__/img/jspatterns.jpg)
 
 Does this book deserve a place on the bookshelf of a JavaScript ninja, in spite of having a partridge on the cover? Read on to find out!
 

@@ -54,9 +54,9 @@ document.addEventListener('click', function(e){
 });
 ```
 
-Try it out in the iframe below (or standalone [here](./static/applets/reduxmiddleware/experiments/nomiddleware.html))
+Try it out in the iframe below (or standalone [here](__STATIC__/applets/reduxmiddleware/experiments/nomiddleware.html))
 
-<iframe src="./static/applets/reduxmiddleware/experiments/nomiddleware.html" height="100px" width="100%"></iframe>
+<iframe src="__STATIC__/applets/reduxmiddleware/experiments/nomiddleware.html" height="100px" width="100%"></iframe>
 
 The following experiments will all be slight variations of this little app. Each will have a standalone link to an html document containing the full code, apart from Redux itself. There will be no other dependencies at all.
 
@@ -87,9 +87,9 @@ var middlewares = Redux.applyMiddleware(noop);
 var store = Redux.createStore(reducer,middlewares);
 ```
 
-...and check that it is still functioning exactly like before (standalone [here](./static/applets/reduxmiddleware/experiments/noop.html)):
+...and check that it is still functioning exactly like before (standalone [here](__STATIC__/applets/reduxmiddleware/experiments/noop.html)):
 
-<iframe src="./static/applets/reduxmiddleware/experiments/noop.html" height="100px" width="100%"></iframe>
+<iframe src="__STATIC__/applets/reduxmiddleware/experiments/noop.html" height="100px" width="100%"></iframe>
 
 Things appear to still be working as they should.
 
@@ -137,9 +137,9 @@ var log1 = loggerFactory("log1"),
     store = Redux.createStore(reducer,middlewares);
 ```
 
-It's a bit spammy, but should give a good sense of what's going on (standalone [here](./static/applets/reduxmiddleware/experiments/logger.html)):
+It's a bit spammy, but should give a good sense of what's going on (standalone [here](__STATIC__/applets/reduxmiddleware/experiments/logger.html)):
 
-<iframe src="./static/applets/reduxmiddleware/experiments/logger.html" height="400px" width="100%"></iframe>
+<iframe src="__STATIC__/applets/reduxmiddleware/experiments/logger.html" height="400px" width="100%"></iframe>
 
 Matching the spam to the various parts of the middleware, here's what we can deduce:
 
@@ -206,9 +206,9 @@ var middlewares = Redux.applyMiddleware(deaf,nervous,impatient),
     store = Redux.createStore(reducer,middlewares);
 ```
 
-The net result should be that only every third click registers, but that click will increase the counter by 2*5 (standalone [here](./static/applets/reduxmiddleware/experiments/havingsomefun.html)):
+The net result should be that only every third click registers, but that click will increase the counter by 2*5 (standalone [here](__STATIC__/applets/reduxmiddleware/experiments/havingsomefun.html)):
 
-<iframe src="./static/applets/reduxmiddleware/experiments/havingsomefun.html" height="100px" width="100%"></iframe>
+<iframe src="__STATIC__/applets/reduxmiddleware/experiments/havingsomefun.html" height="100px" width="100%"></iframe>
 
 
 ### 4. Snooping at final `next`
@@ -230,9 +230,9 @@ var snoopForVanilla = function(middlewareAPI){
 
 Note how we cannot compare references directly since they obviously won't be the same (as we picked `dispatch` from a non-middlewared throwaway store), so we turn them to strings before we check equality.
 
-Now, let's put it to the test (standalone [here](./static/applets/reduxmiddleware/experiments/snoopvanillanaive.html))!
+Now, let's put it to the test (standalone [here](__STATIC__/applets/reduxmiddleware/experiments/snoopvanillanaive.html))!
 
-<iframe src="./static/applets/reduxmiddleware/experiments/snoopvanillanaive.html" height="120px" width="100%"></iframe>
+<iframe src="__STATIC__/applets/reduxmiddleware/experiments/snoopvanillanaive.html" height="120px" width="100%"></iframe>
 
 It seems our assumption was correct!
 
@@ -270,9 +270,9 @@ var middlewares = Redux.applyMiddleware(snooper,noop),
     store = Redux.createStore(reducer,middlewares);
 ```
 
-...and voilà (standalone [here](./static/applets/reduxmiddleware/experiments/snoopatfriend.html)):
+...and voilà (standalone [here](__STATIC__/applets/reduxmiddleware/experiments/snoopatfriend.html)):
 
-<iframe src="./static/applets/reduxmiddleware/experiments/snoopatfriend.html" height="150px" width="100%"></iframe>
+<iframe src="__STATIC__/applets/reduxmiddleware/experiments/snoopatfriend.html" height="150px" width="100%"></iframe>
 
 Evidently the inner part of the middleware becomes the `next`. Which makes sense as the inner part is what takes the action as an argument, and it is the action we're feeding to `next`!
 
@@ -293,9 +293,9 @@ document.addEventListener('click', function(e){
 });
 ```
 
-We run this with a no-middleware store (standalone [here](./static/applets/reduxmiddleware/experiments/outputreturn.html)):
+We run this with a no-middleware store (standalone [here](__STATIC__/applets/reduxmiddleware/experiments/outputreturn.html)):
 
-<iframe src="./static/applets/reduxmiddleware/experiments/outputreturn.html" height="150px" width="100%"></iframe>
+<iframe src="__STATIC__/applets/reduxmiddleware/experiments/outputreturn.html" height="150px" width="100%"></iframe>
 
 Unsurprisingly it seems the docs told the truth - we simply get the action object back.
 
@@ -321,9 +321,9 @@ var middlewares = Redux.applyMiddleware(noop,sillynoop,noop),
 ```
 
 
-See for yourself (standalone [here](./static/applets/reduxmiddleware/experiments/outputreturnsilly.html)):
+See for yourself (standalone [here](__STATIC__/applets/reduxmiddleware/experiments/outputreturnsilly.html)):
 
-<iframe src="./static/applets/reduxmiddleware/experiments/outputreturnsilly.html" height="150px" width="100%"></iframe>
+<iframe src="__STATIC__/applets/reduxmiddleware/experiments/outputreturnsilly.html" height="150px" width="100%"></iframe>
 
 
 ### 7. Localstorage getsate
@@ -354,9 +354,9 @@ var savedstr = window.localStorage.getItem("SAVESTATE")||"{}",
 
 Give it a few clicks below, then reload the page to watch the counter remember its position (and not at *all* to give me extra page views).
 
-<iframe src="./static/applets/reduxmiddleware/experiments/persistence.html" height="100px" width="100%"></iframe>
+<iframe src="__STATIC__/applets/reduxmiddleware/experiments/persistence.html" height="100px" width="100%"></iframe>
 
-Standalone [here](./static/applets/reduxmiddleware/experiments/persistence.html).
+Standalone [here](__STATIC__/applets/reduxmiddleware/experiments/persistence.html).
 
 
 ### 8. The injected `dispatch`
@@ -418,9 +418,9 @@ var log1 = loggerFactory("log1"),
     store = Redux.createStore(reducer,middlewares);
 ```
 
-Try it out (standalone [here](./static/applets/reduxmiddleware/experiments/testingdispatch.html))!
+Try it out (standalone [here](__STATIC__/applets/reduxmiddleware/experiments/testingdispatch.html))!
 
-<iframe src="./static/applets/reduxmiddleware/experiments/testingdispatch.html" height="400px" width="100%"></iframe>
+<iframe src="__STATIC__/applets/reduxmiddleware/experiments/testingdispatch.html" height="400px" width="100%"></iframe>
 
 
 ### 9. Redux-thunk
@@ -551,9 +551,9 @@ var middlewares = Redux.applyMiddleware(thunk,logger),
     store = Redux.createStore(reducer,middlewares);
 ```
 
-Check it out (standalone [here](./static/applets/reduxmiddleware/experiments/thunk.html))!
+Check it out (standalone [here](__STATIC__/applets/reduxmiddleware/experiments/thunk.html))!
 
-<iframe src="./static/applets/reduxmiddleware/experiments/thunk.html" height="150px" width="100%"></iframe>
+<iframe src="__STATIC__/applets/reduxmiddleware/experiments/thunk.html" height="150px" width="100%"></iframe>
 
 This use was rather contrived, but again, remember - the point of thunks as actions is merely to allow us to write asynchronous action creators without being dependent on a reference to the store.
 

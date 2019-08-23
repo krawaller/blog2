@@ -19,7 +19,7 @@ So I did, and it was glorious. But, there was one feature from my old platform t
 
 Since the source view was a very appreciated feature, I went ahead and built it into my Storybook. This post walks through how this was done!
 
-![The end result](./static/sourceview.gif)
+![The end result](__STATIC__/sourceview.gif)
 
 Our Storybook is deployed live at [https://edument-react-examples.netlify.com/](https://edument-react-examples.netlify.com/), and the repo is at [https://github.com/edumentab/react-examples-storybook](https://github.com/edumentab/react-examples-storybook).
 
@@ -27,7 +27,7 @@ Our Storybook is deployed live at [https://edument-react-examples.netlify.com/](
 
 Remember that [classic XKCD strip](https://xkcd.com/208/) about saving the day with regular expressions?
 
-![except not PERL](./static/xkcd.png)
+![except not PERL](__STATIC__/xkcd.png)
 
 As a curious nerd - and expecially one with an academic background - I frequently find myself deep down rabbit holes with a vague awareness that "ok, this is super neat, but I'll never get to use it".
 
@@ -338,13 +338,13 @@ return path.match(".test.") ? "" : source;
 
 The test files will still be included in the bundle, but as empty strings that have no effect. And the test files are now available for viewing in our source code panel!
 
-![test files too!](./static/filelist.png)
+![test files too!](__STATIC__/filelist.png)
 
 ### Showing both uncompiled and compiled source
 
 Another cheap but cute feature we added was a toggle to show the code both before and after the babel compilation:
 
-![](./static/compiled.gif)
+![](__STATIC__/compiled.gif)
 
 We accomplished this simply by including our custom webpack loader two times, once before and once after the babel loader. The second time we pass a `compiled: true` flag.
 

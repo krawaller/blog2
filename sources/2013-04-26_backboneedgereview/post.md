@@ -11,7 +11,7 @@ type: post
 
 In the interest of full disclosure; I was given access to a free copy to conduct this review.
 
-![iThoughts](./static/img/backbonejsedge.jpg)
+![iThoughts](__STATIC__/img/backbonejsedge.jpg)
 
 First off, Developing a Backbone.js Edge (DBE) is a thorough, well-written book. Commonly a book with 5 different authors will have tone and pace vary all over the place, but DBE keeps things consistent, which I appreciate.
 

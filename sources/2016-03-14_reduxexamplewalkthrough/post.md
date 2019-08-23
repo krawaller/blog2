@@ -19,7 +19,7 @@ We'll be picking apart a super simple Redux app, only slightly bigger in scope t
 
 ### Our map
 
-![Map](./static/img/redux-example-map.png)
+![Map](__STATIC__/img/redux-example-map.png)
 
 This is the journey we'll make throughout this post. It might look complicated, but don't fret - this isn't a map of the code but of **everything**, that is, the involved *ideas* and *concepts* as well as the code.
 
@@ -29,11 +29,11 @@ From here on, **each headline will correspond to a concept bubble** in the above
 
 Before we can do anything, we need to have an **app idea** so we know what we're going to create! This will allow us to figure out a **UI**, the **action shapes** and **state shape**.
 
-![Map](./static/img/redux-example-appidea.png)
+![Map](__STATIC__/img/redux-example-appidea.png)
 
 Let's make a simple **counter** app. The counter increases whenever the user clicks a **button**, by an amount controlled by an **input**. It should look something like this:
 
-![Map](./static/img/redux-example-screen.png)
+![Map](__STATIC__/img/redux-example-screen.png)
 
 Essentially the same app that Dan built in his minimal example, except here we can increase by any amount and not just 1.
 
@@ -42,7 +42,7 @@ Essentially the same app that Dan built in his minimal example, except here we c
 
 Now that we have an **app idea**, let's decide on the **state shape**. That will in turn let us figure out what our **initial state** should be, as well as define our **reducer**.
 
-![State shape](./static/img/redux-example-map-stateshape.png)
+![State shape](__STATIC__/img/redux-example-map-stateshape.png)
 
 In Redux, all the app state is contained in one single **object**.
 
@@ -54,7 +54,7 @@ However, in our simple counter app, we only need to track one single thing - the
 
 Having decided on a **state shape**, however simple, we can now define an **initial state**. We'll need this to code our **store**.
 
-![Initial state](./static/img/redux-example-map-initialstate.png)
+![Initial state](__STATIC__/img/redux-example-map-initialstate.png)
 
 For our little app that only entails one single decision - at what number should we start the count? Let's go with 0!
 
@@ -68,7 +68,7 @@ var initialstate = 0;
 
 Let's design the **actions** needed for our **app idea**! We need them in order to make **action creators** and code the **reducer**.
 
-![Action shapes](./static/img/redux-example-map-actions.png)
+![Action shapes](__STATIC__/img/redux-example-map-actions.png)
 
 In our app only one single thing can happen - **incrementing** the counter. Let's decide that the **action** describing this event looks like this:
 
@@ -90,11 +90,11 @@ Note: Normally we would isolate all string constants such as `"INCREMENT"` to a 
 
 Now that we have designed the **action shapes** and the **state shape** we can move on to define our **reducer**! With the reducer we'll be able to instantiate a **store**.
 
-![Reducer](./static/img/redux-example-map-reducer.png)
+![Reducer](__STATIC__/img/redux-example-map-reducer.png)
 
 Remember: a **reducer** in Redux lingo is simply a function that takes the current state and an action, and returns a new state:
 
-![Reducer](./static/img/redux-reducer.png)
+![Reducer](__STATIC__/img/redux-reducer.png)
 
 The reducer in our app just needs to deal with a single action, namely `INCREMENT`:
 
@@ -125,7 +125,7 @@ For more complex app we would write subreducers that each worked on parts of the
 
 With the **initial state** and **reducer** in place, we can now create a **store** for our app state! That will let us code **interaction** for our **app**.
 
-![Store](./static/img/redux-example-map-store.png)
+![Store](__STATIC__/img/redux-example-map-store.png)
 
 A store is instantiated using `Redux.createStore`:
 
@@ -146,7 +146,7 @@ An alternative to providing an `initialstate` on store creation is to have a def
 
 Knowing the shape of the **actions** lets us define **action creators** to be consumed by our views to create **interaction**.
 
-![action creators](./static/img/redux-example-map-actioncreators.png)
+![action creators](__STATIC__/img/redux-example-map-actioncreators.png)
 
 Only one single action creator is needed in our app.
 
@@ -176,11 +176,11 @@ In order to sanely define asynchronous actions we can use [Redux-thunk](https://
 
 Let's design the **UI** needed for our **app idea**. The next step will be to complete our **app** by introducing **ui updating**.
 
-![UI](./static/img/redux-example-map-ui.png)
+![UI](__STATIC__/img/redux-example-map-ui.png)
 
 To create our UI we translate our mental screenshot...
 
-![screenshot](./static/img/redux-example-screen.png)
+![screenshot](__STATIC__/img/redux-example-screen.png)
 
 ...to this `html`:
 
@@ -199,7 +199,7 @@ To create our UI we translate our mental screenshot...
 
 Now that we now the **state shape** and the **UI**, we can define a **UI updater** function for our **app**!
 
-![UI updater](./static/img/redux-example-map-uiupdate.png)
+![UI updater](__STATIC__/img/redux-example-map-uiupdate.png)
 
 The function updates the **UI** depending on the current **state**, which is passed in as an argument:
 
@@ -220,7 +220,7 @@ In a React app this would rather be a **render** function that defined the whole
 
 Now we can complete our **app** by introducing **interaction** through hooking up the **action creators** to the **UI** and dispatch the result to the **store**!
 
-![interaction](./static/img/redux-example-map-interaction.png)
+![interaction](__STATIC__/img/redux-example-map-interaction.png)
 
 We add a click handler to the **button**, which calls the **action creator** with the value from the **input**. The resulting action is passed to the **store**.
 
@@ -242,7 +242,7 @@ Normally you wouldn't let the views have a store reference like this, instead yo
 
 We now have all the pieces we need to finalize our app!
 
-![app](./static/img/redux-example-map-app.png)
+![app](__STATIC__/img/redux-example-map-app.png)
 
 The only code we need to add is to have **UI updater** run whenever the **store** is updated and also run an initial rendering.
 
@@ -316,7 +316,7 @@ updateUI(store.getState());
 
 And here is the app running in an iframe:
 
-<iframe src="./static/applets/reduxminiexample" height="100px" width="100%"></iframe>
+<iframe src="__STATIC__/applets/reduxminiexample" height="100px" width="100%"></iframe>
 
 
 For your convenience there's also a JSBin [here](https://jsbin.com/milini/edit?html,js,output).
@@ -325,7 +325,7 @@ For your convenience there's also a JSBin [here](https://jsbin.com/milini/edit?h
 
 Note how already this minimal example demonstrates the **unidirectional data flow**:
 
-![cycle](./static/img/redux-flow.png)
+![cycle](__STATIC__/img/redux-flow.png)
 
 1. We click a button in our "component"
 2. the component calls an action creator

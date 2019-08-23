@@ -16,7 +16,7 @@ published to Github Pages. This is mainly directed at students taking the Linnae
 
 The definition of continuous integration can be more complex, but in this context we merely aim to make our test suite run automatically whenever we push new code to the github repo. That's what [Travis CI](https://travis-ci.org/) does for us. After setting up Travis to watch our repo, we can navigate to `http://travis-ci.org/<githubusername>/<reponame>` to see the results for each build:
 
-[![travis result](./static/img/travisresults.png)](https://travis-ci.org/krawaller/algol3/builds)
+[![travis result](__STATIC__/img/travisresults.png)](https://travis-ci.org/krawaller/algol3/builds)
 
 
 
@@ -26,11 +26,11 @@ Having Travis running the test suite whenever we push code to Github is not a ve
 
 But Github has a Travis hook for pull requests, which means that whenever someone creates a pull request to my repo, the Travis results will be shown right in the pull request:
 
-[![silly pull request](./static/img/sillypullrequest.png)](https://github.com/krawaller/algol3/pull/1/files)
+[![silly pull request](__STATIC__/img/sillypullrequest.png)](https://github.com/krawaller/algol3/pull/1/files)
 
 Clicking the warning will take us to a log dump at Travis, where we can see exactly what went wrong:
 
-[![travis fail](./static/img/travisfail.png)](https://travis-ci.org/krawaller/algol3/jobs/32018043)
+[![travis fail](__STATIC__/img/travisfail.png)](https://travis-ci.org/krawaller/algol3/jobs/32018043)
 
 Apparently, the proposed change is a very bad idea. Without Travis I'd have to run the requested change on my machine to see if the test suite held up, but now I'm immediately (well, after a few minutes) warned by Travis.
 
@@ -39,7 +39,7 @@ Apparently, the proposed change is a very bad idea. Without Travis I'd have to r
 
 First off we need to tell Travis to watch our repository. We do that by signing in to [http://travis-ci.org](http://travis-ci.org) (note that [http://travis-ci.com](http://travis-ci.com) is for private repoes) using our Github credentials, and then flicking the switch for the repo in question:
 
-![travis activation](./static/img/travisflick.png)
+![travis activation](__STATIC__/img/travisflick.png)
 
 By default Travis will run the `test` script specified in `package.json` in the root of our repo. Here's the relevant parts of that file for Algol3:
 
@@ -96,7 +96,7 @@ Third time's the charm!
 
 Which then looks like this:
 
-[![readme with travis badge](./static/img/readmewithtravisbadge.png)](https://github.com/krawaller/algol3/blob/gh-pages/README.md)
+[![readme with travis badge](__STATIC__/img/readmewithtravisbadge.png)](https://github.com/krawaller/algol3/blob/gh-pages/README.md)
 
 ### Supporting Node and the browser
 
@@ -177,8 +177,8 @@ Note I haven't managed to used the same dependencies as Node, instead the html r
 
 But the spec files and the app are all the same, which means we can somewhat reliably run the tests in the browser...
 
-[![html tests](./static/img/browsertestresults.png)](http://krawaller.github.io/algol3/test/suite.html)
+[![html tests](__STATIC__/img/browsertestresults.png)](http://krawaller.github.io/algol3/test/suite.html)
 
 ...getting the same results as if we ran `jasmine-node test` locally:
 
-![node tests](./static/img/nodetests.png)
+![node tests](__STATIC__/img/nodetests.png)

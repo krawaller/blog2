@@ -236,7 +236,7 @@ The extra parenthesises around the three function types are needed for TypeScrip
 
 This gives us rather nice intellisense help in a TypeScript setting:
 
-![](./static/img/callbag-typing.gif)
+![](__STATIC__/img/callbag-typing.gif)
 
 In fact, that's so nice that we should split up `SourceTalkback` in the same way so that it too gets separate parameter names per call type:
 
@@ -439,7 +439,7 @@ type Operator = (...args: Array<any>) => SinkConnector;
 
 However, if we want to avoid using types that haven't been defined yet, we can look at the dependency graph of the types...
 
-![](./static/diagrams/callbag-typedefs.svg)
+![](__STATIC__/diagrams/callbag-typedefs.svg)
 
 ...and reorder them backwards according to that:
 

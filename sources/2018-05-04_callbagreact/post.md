@@ -19,7 +19,7 @@ In this post we take on that challenge through rewriting the TodoMVC solution to
 
 Let's begin by reviewing what we already have. The [previous implementation](https://github.com/krawaller/callbag-todomvc) was built like this...
 
-![](./static/diagrams/callbag-mvi.svg)
+![](__STATIC__/diagrams/callbag-mvi.svg)
 
 ...which translates to [this bootstrapping code](https://github.com/krawaller/callbag-todomvc/blob/master/src/index.js):
 
@@ -138,11 +138,11 @@ There are two facts we cannot escape:
 
 In other words - we need the missing piece in this chain:
 
-![](./static/diagrams/callbag-from-function-chain.svg)
+![](__STATIC__/diagrams/callbag-from-function-chain.svg)
 
 To solve this I made `callbag-from-function` - it is a factory function that takes a function (or defaults to the identity function), and returns an emitter and a source:
 
-![](./static/diagrams/callbag-from-function-api.svg)
+![](__STATIC__/diagrams/callbag-from-function-api.svg)
 
 The emitter behaves exactly like the passed-in function, except it will also make the source emit all returned values.
 
@@ -277,7 +277,7 @@ Note that the signals are nothing like `mapDispatchToProps` from `ReactRedux` - 
 
 The **old app** had this flow...
 
-![](./static/diagrams/callbag-mvi.svg)
+![](__STATIC__/diagrams/callbag-mvi.svg)
 
 ...which meant [this bootstrapping](https://github.com/krawaller/callbag-todomvc/blob/master/src/index.js):
 
@@ -291,7 +291,7 @@ makeSideEffects(window, actions, view);
 
 The **new, React-based app** - with the repo [https://github.com/krawaller/callbag-todomvc-react](https://github.com/krawaller/callbag-todomvc-react) - ended upp looking like this:
 
-![](./static/diagrams/callbag-mvi-2.svg)
+![](__STATIC__/diagrams/callbag-mvi-2.svg)
 
 Here's the [new bootstrapping code](https://github.com/krawaller/callbag-todomvc-react/blob/master/src/index.js):
 

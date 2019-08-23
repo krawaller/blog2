@@ -27,7 +27,7 @@ Imagine we have a complex webapp with lots of styling. We now want to add a new 
 
 Here's what it should look like:
 
-![](./static/img/cssinjsbox.png)
+![](__STATIC__/img/cssinjsbox.png)
 
 Disregarding styling, here's the markup:
 
@@ -136,7 +136,7 @@ Note that both of these later selectors will have an opinion about the `font-siz
 
 With our styles in a CSS file, we now have the following situation:
 
-![](./static/diagrams/cssinjs-selector.svg)
+![](__STATIC__/diagrams/cssinjs-selector.svg)
 
 The rule blobs are connected with their respective target elements via **selectors**. While they work fine for our simple example, they **don't scale well**. As the app grows it is very easy to end up in a messy situation where we are scared to change both HTML and CSS, in fear of some selector somewhere breaking.
 
@@ -337,11 +337,11 @@ export class ExplanationBox extends React.Component {
 
 We have now sort of reinvented the stylesheet! Except, where before the stylesheet used selectors to fire blindly into the dark...
 
-![](./static/diagrams/cssinjs-selector.svg)
+![](__STATIC__/diagrams/cssinjs-selector.svg)
 
 ...we now let the components go get exactly the styles they need via `import`s:
 
-![](./static/diagrams/cssinjs-import.svg)
+![](__STATIC__/diagrams/cssinjs-import.svg)
 
 It might not be immediately obvious, but the flipping of this arrow makes a world of difference!
 
@@ -354,7 +354,7 @@ Remember the first unanswerable question?
 
 In our imported inline style setup, this becomes trivial to answer. I simply follow the thread backwards from the style prop!
 
-![](./static/img/cssinjs-findkiller.gif)
+![](__STATIC__/img/cssinjs-findkiller.gif)
 
 
 ### Finding the victim
@@ -365,7 +365,7 @@ Our second unanswerable question was:
 
 Again, because of the explicit imports, this becomes very easy to answer (if you have a semi-competent editor):
 
-![](./static/img/cssinjs-findvictim.gif)
+![](__STATIC__/img/cssinjs-findvictim.gif)
 
 ### LESS isn't more
 

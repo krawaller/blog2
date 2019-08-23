@@ -23,7 +23,7 @@ Putting the demo app together was a lot of fun! I used React (of course), and it
 
 The app is made up by four components:
 
-![components](./static/img/flexboxcomp.jpg)
+![components](__STATIC__/img/flexboxcomp.jpg)
 
 The top level `Demo` component uses `Child` to display the flex children. It also renders the two `Form`s, who in turn uses `Dropdown` for each individual control.
 
