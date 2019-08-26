@@ -8,7 +8,12 @@ function writeTag(data, tagId, outputRoot) {
   const posts = data.tags[tagId];
   const count = posts.length;
   const compName =
-    "Tag" + tagId[0].toUpperCase() + tagId.slice(1).replace(" ", "_");
+    "Tag" +
+    tagId[0].toUpperCase() +
+    tagId
+      .slice(1)
+      .replace(" ", "_")
+      .replace("-", "_");
   const fileName = tagId.toLowerCase().replace(" ", "_");
   const file = `
 import React from 'react';
