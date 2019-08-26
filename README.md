@@ -15,7 +15,7 @@ Run `npm install`, and then if you want you can start a local hot-reloading vers
    - a `post.md` file with...
      - YAML frontmatter with attributes for title, url, etc. See an existing post for what's available.
      - A body with your content written in markdown!
-   - a `static` folder with any images etc. To refer into that folder from the post, use `./static/<whatever>` as you normally would (that path will later be automagically altered).
+   - a `__STATIC__` folder with any images etc. To refer into that folder from the post, use `__STATIC__/<whatever>` as you normally would (that path will later be automagically altered). But don't add `./` or `/` before `__STATIC__`!
 
 1. To create a react component for your post, run `npm run makePosts` (this will rebuild all posts and the index)
 
