@@ -51,9 +51,11 @@ For TypeScript users; my `AppEpic` type is a simple helper type looking somethin
 
 ```typescript
 import { Epic } from "redux-observable";
-import { AppAction } from "./actions"; // a union of all action types
-import { AppState } from "./state"; // typings for the full Redux state in my app
-import { EpicDeps } from "./epicdeps"; // the dependency object given to all epics
+import {
+  AppAction, // a union of all action types
+  AppState, // typings for the full
+  EpicDeps // the dependency object given to all epics
+} from "../types";
 
 export type AppEpic = Epic<AppAction, AppAction, AppState, EpicDeps>;
 ```
@@ -76,25 +78,15 @@ To write tests we need to be able to do the following:
 - provide dependencies
 - see what the epic emits at any point in time
 
-The helper does exactly this with a very simple API:
+The helper does exactly this with a very simple API - you simply call a `testEpic` function, typically once per unit test:
 
-1. First we call the `makeEpicTester` factory with an initial state:
-
-   ```typescript
-   const testEpic = makeEpicTester<AppAction, AppState, EpicDeps>(initialState);
-   ```
-
-   This we really only need to do one single time, and then share that `testEpic` function between all tests.
-
-1. Then we can use the `testEpic` function. It is convenient to call and destruct in one go:
-
-   ```typescript
-   const {
-     emitAction, // will emit to action$
-     emitState, // will emit to state$
-     epicEmissions // a mutating array of emissions from the epic
-   } = testEpic(submitRatingEpic, fakeDeps);
-   ```
+```typescript
+const {
+  emitAction, // will emit to action$
+  emitState, // will emit to state$
+  epicEmissions // a mutating array of emissions from the epic
+} = testEpic(submitRatingEpic, fakeDeps);
+```
 
 A test would then typically look something like this:
 
@@ -145,7 +137,6 @@ First we do some setup! We need...
 1. an epic instance to test! This is where our helper method comes into play:
 
    ```typescript
-   const testEpic = makeEpicTester(getDefaultAppState());
    const { epicEmissions, emitState, emitAction } = testEpic(
      submitRatingEpic,
      fakeDeps
@@ -198,15 +189,16 @@ There isn't much to the source of the helper! It mainly consists of instantiatin
 import { Subject } from "rxjs";
 import { ActionsObservable, StateObservable, Epic } from "redux-observable";
 
-export const makeEpicTester = <S, A extends Action<string, any>, D>(
-  initialState: S
-) => (epic: Epic<A, A, S, D>, deps: Partial<D>) => {
+export const testEpic = <A extends Action<string, any>, S, D>(
+  epic: Epic<A, A, S, D>, // A, S, D will be inferred from here
+  deps: Partial<D> = ({} as unknown) as D
+) => {
   const actionSubject = new Subject<A>();
   const action$ = new ActionsObservable(actionSubject);
   const emitAction = actionSubject.next.bind(actionSubject);
 
   const stateSubject = new Subject<S>();
-  const state$ = new StateObservable(stateSubject, initialState);
+  const state$ = new StateObservable(stateSubject, (null as unknown) as S);
   const emitState = stateSubject.next.bind(stateSubject);
 
   const epicEmissions: A[] = [];
@@ -222,13 +214,13 @@ The regular JS versions for the non-enlightened:
 import { Subject } from "rxjs";
 import { ActionsObservable, StateObservable } from "redux-observable";
 
-export const makeEpicTester = initialState => (epic, deps) => {
+export const testEpic = (epic, deps = {}) => {
   const actionSubject = new Subject();
   const action$ = new ActionsObservable(actionSubject);
   const emitAction = actionSubject.next.bind(actionSubject);
 
   const stateSubject = new Subject();
-  const state$ = new StateObservable(stateSubject, initialState);
+  const state$ = new StateObservable(stateSubject, null);
   const emitState = stateSubject.next.bind(stateSubject);
 
   const epicEmissions = [];
